@@ -14,14 +14,19 @@ pre {
   font-size: 11px; }
 
 a {
-  color: #000; }
+  	color:#1C1C1C;
+	text-decoration:none;
+}
+
 
 a:visited {
-  color: #666; }
+  color:#1C1C1C; 
+}
 
 a:hover {
-  color: #fff;
-  background-color: #000; }
+	color:#1C1C1C;
+	
+}
 
 th {
   padding-bottom: 5px; }

@@ -1,18 +1,49 @@
-<h1>New Meeting</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+</head>
 
-<%= render 'form', meeting: @meeting %>
+<body>
+	<div id="wrap">
+	
+		<div class="category">
+			<div class="team_main">
+				<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>"><%= Team.find(params[:team_id]).t_name %></a>
+			</div>
+			
+			<nav class="nav">
+				<ul>
+					<li><a href="#">공지사항</a></li>
+					<li><%= link_to "조별활동과정", activity_list_path(params[:team_id]), method: :post %></li>
+					<li><%= link_to "일정관리", write_meeting_path(params[:team_id]), method: :post %></li>
+					<% if Admin.where(user_id: current_user.id).exists? %>
+					<li><%= link_to "멤버관리", members_path(params[:team_id]), method: :post %></li>
+					<% end %>
+				</ul>
+			</nav>
+		</div>
+
+		
 
 
+		<div class="calendar">
+			<h1>New Meeting</h1>
 
-<%= month_calendar events: @meetings do |date, meetings| %>
-  <%= date %>
+			<%= render 'form', meeting: @meeting %>
+			
+			<%= month_calendar events: @meetings do |date, meetings| %>
+			  <%= date %>
 
-  <% meetings.each do |meeting| %>
-    <div>
-        <%= meeting.schedule %><br />
-		<%= meeting.place %><br />
-		<%= meeting.start_time.strftime("%k:%M %p")   %>
-    </div>
-  <% end %>
-<% end %>
-<%= link_to 'Back', meetings_path %>
+			  <% meetings.each do |meeting| %>
+				<div>
+					<%= meeting.schedule %><br />
+					<%= meeting.place %><br />
+					<%= meeting.start_time.strftime("%k:%M %p")   %>
+				</div>
+			  <% end %>
+			<% end %>
+		</div>
+		
+	</div>
+</body>

@@ -4,7 +4,8 @@ class UhtsController < ApplicationController
   # GET /uhts or /uhts.json
   def index
     @uhts = Uht.all
-	@team = Team.where(id: params[:team_id])
+	@team = Team.find(params[:team_id])
+	@uht = Uht.where(team_id: @team)
   end
 
   # GET /uhts/1 or /uhts/1.json

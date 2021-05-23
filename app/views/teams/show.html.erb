@@ -16,13 +16,16 @@
 					
 			
 					<div class="category">
+						<div class="team_main">
+							<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
+						</div>
 						<nav class="nav">
 							<ul>
+								<li><a href="#">공지사항</a></li>
 								<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
 								<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
-								<li><a href="#">Menu3</a></li>
 								<% if Admin.where(user_id: current_user.id).exists? %>
-									<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
+								<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
 								<% end %>
 							</ul>
 						</nav>

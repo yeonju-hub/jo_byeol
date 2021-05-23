@@ -22,5 +22,5 @@ Rails.application.routes.draw do
 	get '/:team_id/meetings' => 'meetings#new', as: 'get_write_meeting'
 	
 	post '/:team_id/members' => 'uhts#index', as: 'members'
-	get '/:team_id/members' => 'members#index', as: 'get_members'
+	get '/:team_id/members' => 'uhts#index', as: 'get_members'
 end
