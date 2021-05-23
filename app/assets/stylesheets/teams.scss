@@ -70,10 +70,20 @@
 	display: none;
 }
 
-.team_page .contens {
+.team_page .contents {
 	width: 1350px;
     height: 850px;
+	padding: 20px;
     float: left;
+	text-align: center; 
     background: #ccc;
 }
 
+
+.team_page .contents .box {
+	width:300px;
+	height:200px;
+	font-size: 20px;
+	background: #cda;
+	border: 1px solid #E6E6E6;
+}

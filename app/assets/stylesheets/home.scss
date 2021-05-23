@@ -9,6 +9,8 @@
 	margin-top:20px;
 }
 
+
+
 #wrap_main a {
 	text-decoration:none;
 }
@@ -67,4 +69,30 @@
 	padding-top:25px;
 	float:left;
 	background: #E6E6E6;
+}
+
+.banner {
+	width:1400px;
+	height:600px;
+	background:rgba(0,0,0,2);
+	overflow: hidden;
+	float: left;
+	position: relative;
+	text-align: center;
+}
+
+.banner img {
+	width:1700px;
+	height:1000px;
+	opacity: 0.5;
+    filter: alpha(opacity=50);
+	margin-left:-150px;
+	margin-top:-200px;
+	position: relative;
+}
+
+.banner h1 {
+	color:#ffffff;
+	position: absolute;
+	text-align: center;
 }
