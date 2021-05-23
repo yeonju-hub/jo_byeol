@@ -1,0 +1,1328 @@
+  [1m[35m (5278.1ms)[0m  [1m[35mCREATE DATABASE "dev_db" ENCODING = 'unicode' TEMPLATE = "template0"[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (2996.1ms)[0m  [1m[35mCREATE DATABASE "test_db" ENCODING = 'unicode' TEMPLATE = "template0"[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (93.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (24.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Migrating to DeviseCreateUsers (20210523093512)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (58.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20210523093512_devise_create_users.rb:5
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  ↳ db/migrate/20210523093512_devise_create_users.rb:39
+  [1m[35m (13.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  ↳ db/migrate/20210523093512_devise_create_users.rb:40
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210523093512"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-23 09:37:11.412960"], ["updated_at", "2021-05-23 09:37:11.412960"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Migrating to AddUserInfoToUsers (20210523094153)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "users" ADD "name" character varying[0m
+  ↳ db/migrate/20210523094153_add_user_info_to_users.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "number" integer[0m
+  ↳ db/migrate/20210523094153_add_user_info_to_users.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210523094153"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Migrating to CreateTeams (20210523094601)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (54.5ms)[0m  [1m[35mCREATE TABLE "teams" ("id" bigserial primary key, "t_name" character varying, "c_name" character varying, "p_name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20210523094601_create_teams.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210523094601"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+Migrating to CreateAdmins (20210523094639)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (69.7ms)[0m  [1m[35mCREATE TABLE "admins" ("id" bigserial primary key, "user_id" bigint, "team_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_378b9734e4"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_34c89de078"
+FOREIGN KEY ("team_id")
+  REFERENCES "teams" ("id")
+)[0m
+  ↳ db/migrate/20210523094639_create_admins.rb:3
+  [1m[35m (15.4ms)[0m  [1m[35mCREATE  INDEX  "index_admins_on_user_id" ON "admins"  ("user_id")[0m
+  ↳ db/migrate/20210523094639_create_admins.rb:3
+  [1m[35m (16.4ms)[0m  [1m[35mCREATE  INDEX  "index_admins_on_team_id" ON "admins"  ("team_id")[0m
+  ↳ db/migrate/20210523094639_create_admins.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (13.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210523094639"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+Migrating to CreateUhts (20210523094708)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (28.6ms)[0m  [1m[35mCREATE TABLE "uhts" ("id" bigserial primary key, "user_id" bigint, "team_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c215e76f97"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_f8e2ba7030"
+FOREIGN KEY ("team_id")
+  REFERENCES "teams" ("id")
+)[0m
+  ↳ db/migrate/20210523094708_create_uhts.rb:3
+  [1m[35m (16.6ms)[0m  [1m[35mCREATE  INDEX  "index_uhts_on_user_id" ON "uhts"  ("user_id")[0m
+  ↳ db/migrate/20210523094708_create_uhts.rb:3
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE  INDEX  "index_uhts_on_team_id" ON "uhts"  ("team_id")[0m
+  ↳ db/migrate/20210523094708_create_uhts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210523094708"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (5.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Started GET "/" for 172.17.0.1 at 2021-05-23 09:55:38 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (109.1ms)
+Completed 200 OK in 384ms (Views: 283.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/index" for 172.17.0.1 at 2021-05-23 09:55:45 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (735.8ms)
+  Rendered home/index.html.erb within layouts/application (771.6ms)
+[Webpacker] Compiling...
+Started GET "/home/index" for 172.17.0.1 at 2021-05-23 09:56:45 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (40.1ms)
+  Rendered home/index.html.erb within layouts/application (56.6ms)
+[Webpacker] Compiling...
+Started GET "/home/index" for 172.17.0.1 at 2021-05-23 09:56:54 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (374.2ms)
+  Rendered home/index.html.erb within layouts/application (418.6ms)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+
+[Webpacker] Compilation failed:
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+
+[Webpacker] Compilation failed:
+
+Completed 500 Internal Server Error in 39093ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in /workspace/jo_byeol/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9:in `_app_views_layouts_application_html_erb__4406232520771607106_47040909226800'
+Completed 500 Internal Server Error in 107417ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in /workspace/jo_byeol/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9:in `_app_views_layouts_application_html_erb__4406232520771607106_47040911951120'
+Completed 500 Internal Server Error in 48182ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in /workspace/jo_byeol/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9:in `_app_views_layouts_application_html_erb__4406232520771607106_47040910157460'
+Started GET "/" for 172.17.0.1 at 2021-05-23 09:58:16 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (14.6ms)
+Completed 200 OK in 57ms (Views: 37.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/index" for 172.17.0.1 at 2021-05-23 09:58:22 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (16.5ms)
+  Rendered home/index.html.erb within layouts/application (18.8ms)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /workspace/jo_byeol/public/packs
+[Webpacker] Hash: 15d1bb7b54cf6326b9ba
+Version: webpack 4.43.0
+Time: 4248ms
+Built at: 2021-05-23 9:58:37 ├F10: AM┤
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-9afcbb5693aa87623e69.js    124 KiB  application  [emitted] [immutable]  application
+js/application-9afcbb5693aa87623e69.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-9afcbb5693aa87623e69.js js/application-9afcbb5693aa87623e69.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 749 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+Completed 200 OK in 15537ms (Views: 15535.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/meetings/new" for 172.17.0.1 at 2021-05-23 10:00:57 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.6) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (9.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Migrating to CreateMeetings (20210523095942)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (41.2ms)[0m  [1m[35mCREATE TABLE "meetings" ("id" bigserial primary key, "team_id" bigint, "schedule" character varying, "start_time" timestamp, "place" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_3cbd71c9ea"
+FOREIGN KEY ("team_id")
+  REFERENCES "teams" ("id")
+)[0m
+  ↳ db/migrate/20210523095942_create_meetings.rb:3
+  [1m[35m (26.0ms)[0m  [1m[35mCREATE  INDEX  "index_meetings_on_team_id" ON "meetings"  ("team_id")[0m
+  ↳ db/migrate/20210523095942_create_meetings.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (2.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210523095942"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (13.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (15.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (7.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Started GET "/meetings/new" for 172.17.0.1 at 2021-05-23 10:01:33 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by MeetingsController#new as HTML
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (104.5ms)
+  Rendered meetings/new.html.erb within layouts/application (111.2ms)
+Started GET "/meetings" for 172.17.0.1 at 2021-05-23 10:01:37 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 6284ms (Views: 6137.9ms | ActiveRecord: 39.4ms)
+
+
+Processing by MeetingsController#index as HTML
+  Rendering meetings/index.html.erb within layouts/application
+  [1m[36mMeeting Load (0.9ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/views/meetings/index.html.erb:1
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (20.4ms)
+  Rendered meetings/index.html.erb within layouts/application (28.9ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 88ms (Views: 79.9ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/meetings/new" for 172.17.0.1 at 2021-05-23 10:02:07 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#new as HTML
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (4.7ms)
+  Rendered meetings/new.html.erb within layouts/application (5.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 24.5ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/users/sign_in" for 172.17.0.1 at 2021-05-23 10:02:13 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (30.5ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 119ms (Views: 90.7ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/users/sign_up" for 172.17.0.1 at 2021-05-23 10:02:14 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (1.6ms)
+  Rendered devise/shared/_links.html.erb (1.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (12.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 55ms (Views: 52.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 172.17.0.1 at 2021-05-23 10:02:28 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CkVpUtoOR30drkkSCn8appv5ce6aNcZWkbLTSweTl5yeKmKIPKHLPiw2EBT3t6Vb2RxGXFEqOIdKL3xZ0qn/8Q==", "user"=>{"email"=>"test1@naver.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"훈이", "number"=>"20161360"}, "commit"=>"Sign up"}
+Unpermitted parameters: :name, :number
+  [1m[35m (10.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Exists (25.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@naver.com"], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "test1@naver.com"], ["encrypted_password", "$2a$12$EV1ob6BcRb/qWFGMEowEc.FBcMk2hkKt//CgJgme20PAz3eCoBely"], ["created_at", "2021-05-23 10:02:30.148263"], ["updated_at", "2021-05-23 10:02:30.148263"]]
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (7.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/
+Completed 302 Found in 1799ms (ActiveRecord: 44.4ms)
+
+
+Started GET "/" for 172.17.0.1 at 2021-05-23 10:02:30 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (2.6ms)
+Completed 200 OK in 28ms (Views: 25.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/meetings/new" for 172.17.0.1 at 2021-05-23 10:02:39 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#new as HTML
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (10.3ms)
+  Rendered meetings/new.html.erb within layouts/application (14.6ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 123ms (Views: 120.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/teams" for 172.17.0.1 at 2021-05-23 10:02:44 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#index as HTML
+  Rendering teams/index.html.erb within layouts/application
+  [1m[36mTeam Load (16.5ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  ↳ app/views/teams/index.html.erb:16
+  Rendered teams/index.html.erb within layouts/application (25.3ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 153ms (Views: 102.0ms | ActiveRecord: 23.7ms)
+
+
+Started GET "/teams/new" for 172.17.0.1 at 2021-05-23 10:02:45 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#new as HTML
+  Rendering teams/new.html.erb within layouts/application
+  Rendered teams/_form.html.erb (3.7ms)
+  Rendered teams/new.html.erb within layouts/application (13.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (10.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 141ms (Views: 95.3ms | ActiveRecord: 14.4ms)
+
+
+Started POST "/teams" for 172.17.0.1 at 2021-05-23 10:02:54 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EQsTVxg8kVcoQ2Z+q3MdNkqWMpJd4gCqXkor8iXZGPdIGXr1xYL/in0M+2UOOcY8dGNW0349LtvcnWfsF+7RUw==", "team"=>{"t_name"=>"틴탑", "c_name"=>"전공캡스톤디자인", "p_name"=>"김성희"}, "commit"=>"Create Team"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teams_controller.rb:27
+  [1m[36mTeam Create (0.8ms)[0m  [1m[32mINSERT INTO "teams" ("t_name", "c_name", "p_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["t_name", "틴탑"], ["c_name", "전공캡스톤디자인"], ["p_name", "김성희"], ["created_at", "2021-05-23 10:02:54.730440"], ["updated_at", "2021-05-23 10:02:54.730440"]]
+  ↳ app/controllers/teams_controller.rb:27
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teams_controller.rb:27
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/teams/1
+Completed 302 Found in 9ms (ActiveRecord: 4.5ms)
+
+
+Started GET "/teams/1" for 172.17.0.1 at 2021-05-23 10:02:54 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeam Load (8.0ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:62
+  Rendering teams/show.html.erb within layouts/application
+  Rendered teams/show.html.erb within layouts/application (1.2ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 138ms (Views: 121.3ms | ActiveRecord: 8.4ms)
+
+
+Started GET "/meetings" for 172.17.0.1 at 2021-05-23 10:03:00 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#index as HTML
+  Rendering meetings/index.html.erb within layouts/application
+  [1m[36mMeeting Load (7.3ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/views/meetings/index.html.erb:1
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (53.7ms)
+  Rendered meetings/index.html.erb within layouts/application (89.9ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (13.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 236ms (Views: 213.9ms | ActiveRecord: 20.5ms)
+
+
+Started GET "/meetings/new" for 172.17.0.1 at 2021-05-23 10:03:03 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#new as HTML
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (9.0ms)
+  Rendered meetings/new.html.erb within layouts/application (20.5ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (5.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 173ms (Views: 166.1ms | ActiveRecord: 5.3ms)
+
+
+Started POST "/meetings" for 172.17.0.1 at 2021-05-23 10:03:11 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SGaJpSGNf6bp1zglkUNxZI5Th3aBwltYk1ltdJ8GqF9P8jxP6NK6lriQOranx4PlEbE1VXpr9Ndy+17mNVM2bA==", "meeting"=>{"team_id"=>"1", "schedule"=>"회의하기", "start_time(1i)"=>"2021", "start_time(2i)"=>"5", "start_time(3i)"=>"23", "start_time(4i)"=>"14", "start_time(5i)"=>"00", "place"=>"지천관 601호"}, "commit"=>"Create Meeting"}
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/meetings_controller.rb:27
+  [1m[36mTeam Load (17.8ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/meetings_controller.rb:27
+  [1m[36mMeeting Create (19.0ms)[0m  [1m[32mINSERT INTO "meetings" ("team_id", "schedule", "start_time", "place", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["team_id", 1], ["schedule", "회의하기"], ["start_time", "2021-05-23 14:00:00"], ["place", "지천관 601호"], ["created_at", "2021-05-23 10:03:12.069840"], ["updated_at", "2021-05-23 10:03:12.069840"]]
+  ↳ app/controllers/meetings_controller.rb:27
+  [1m[35m (11.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/meetings_controller.rb:27
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/meetings/1
+Completed 302 Found in 182ms (ActiveRecord: 49.3ms)
+
+
+Started GET "/meetings/1" for 172.17.0.1 at 2021-05-23 10:03:12 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMeeting Load (0.4ms)[0m  [1m[34mSELECT  "meetings".* FROM "meetings" WHERE "meetings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/meetings_controller.rb:62
+  Rendering meetings/show.html.erb within layouts/application
+  [1m[36mTeam Load (3.6ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/meetings/show.html.erb:5
+  Rendered meetings/show.html.erb within layouts/application (16.4ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 111ms (Views: 100.5ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/meetings" for 172.17.0.1 at 2021-05-23 10:03:13 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#index as HTML
+  Rendering meetings/index.html.erb within layouts/application
+  [1m[36mMeeting Load (4.4ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/views/meetings/index.html.erb:1
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (51.6ms)
+  Rendered meetings/index.html.erb within layouts/application (114.4ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 172ms (Views: 160.2ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/meetings" for 172.17.0.1 at 2021-05-23 10:52:21 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.6) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Migrating to CreateActivities (20210523105044)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (39.7ms)[0m  [1m[35mCREATE TABLE "activities" ("id" bigserial primary key, "team_id" bigint, "user_id" bigint, "title" character varying, "research" text, "ppt" text, "script" text, "attachment" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d67d554927"
+FOREIGN KEY ("team_id")
+  REFERENCES "teams" ("id")
+, CONSTRAINT "fk_rails_7e11bb717f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20210523105044_create_activities.rb:3
+  [1m[35m (16.3ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_team_id" ON "activities"  ("team_id")[0m
+  ↳ db/migrate/20210523105044_create_activities.rb:3
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_user_id" ON "activities"  ("user_id")[0m
+  ↳ db/migrate/20210523105044_create_activities.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (3.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210523105044"]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Started GET "/meetings" for 172.17.0.1 at 2021-05-23 10:52:42 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by MeetingsController#index as HTML
+  Rendering meetings/index.html.erb within layouts/application
+  [1m[36mMeeting Load (0.7ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/views/meetings/index.html.erb:1
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (11.0ms)
+  Rendered meetings/index.html.erb within layouts/application (31.5ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 4226ms (Views: 4201.3ms | ActiveRecord: 18.0ms)
+
+
+Started GET "/" for 172.17.0.1 at 2021-05-23 10:52:52 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (2.7ms)
+Completed 200 OK in 13ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 10:52:59 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant Activity::AttachmentUploader):
+  
+app/models/activity.rb:5:in `<class:Activity>'
+app/models/activity.rb:1:in `<main>'
+app/controllers/activities_controller.rb:6:in `index'
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 10:53:31 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant Activity::AttachmentUploader):
+  
+app/models/activity.rb:5:in `<class:Activity>'
+app/models/activity.rb:1:in `<main>'
+app/controllers/activities_controller.rb:6:in `index'
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 10:53:43 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant Activity::AttachmentUploader):
+  
+app/models/activity.rb:5:in `<class:Activity>'
+app/models/activity.rb:1:in `<main>'
+app/controllers/activities_controller.rb:6:in `index'
+Started GET "/" for 172.17.0.1 at 2021-05-23 10:58:47 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (1.8ms)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 10:58:52 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant Activity::AttachmentUploader):
+  
+app/models/activity.rb:5:in `<class:Activity>'
+app/models/activity.rb:1:in `<main>'
+app/controllers/activities_controller.rb:6:in `index'
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 11:00:01 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant Activity::AttachmentUploader):
+  
+app/models/activity.rb:5:in `<class:Activity>'
+app/models/activity.rb:1:in `<main>'
+app/controllers/activities_controller.rb:6:in `index'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8575728061014197160)[0m
+  ↳ /usr/local/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/bin/rake:23
+Started GET "/" for 172.17.0.1 at 2021-05-23 11:03:05 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.6.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (3.2ms)
+Completed 200 OK in 16ms (Views: 8.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 11:03:13 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (3.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities"[0m
+  ↳ app/views/activities/index.html.erb:20
+  Rendered activities/index.html.erb within layouts/application (9.4ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 1634ms (Views: 1599.9ms | ActiveRecord: 13.7ms)
+
+
+Started GET "/activities/new" for 172.17.0.1 at 2021-05-23 11:03:17 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#new as HTML
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/_form.html.erb (40.5ms)
+  Rendered activities/new.html.erb within layouts/application (42.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 100ms (Views: 77.7ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/activities" for 172.17.0.1 at 2021-05-23 11:03:49 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dKkHgwCeFbICkTp/hiX8QD76FEg0k7BXOC5BsF6TBBbywJrkGlSd2pzZU7qGPGbd6X4PuKKyGs1A5esC1XlhrA==", "activity"=>{"team_id"=>"1", "user_id"=>"1", "title"=>"자료첨부합니다(05.10)", "research"=>"자료조사", "ppt"=>"ppt", "script"=>"대본", "attachment"=>#<ActionDispatch::Http::UploadedFile:0x000055c3c9e66710 @tempfile=#<Tempfile:/tmp/RackMultipart20210523-7335-124w46i.zip>, @original_filename="scheduler.zip", @content_type="application/x-zip-compressed", @headers="Content-Disposition: form-data; name=\"activity[attachment]\"; filename=\"scheduler.zip\"\r\nContent-Type: application/x-zip-compressed\r\n">}, "commit"=>"Create Activity"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:27
+  [1m[36mTeam Load (0.6ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:27
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:27
+  [1m[36mActivity Create (1.2ms)[0m  [1m[32mINSERT INTO "activities" ("team_id", "user_id", "title", "research", "ppt", "script", "attachment", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["team_id", 1], ["user_id", 1], ["title", "자료첨부합니다(05.10)"], ["research", "자료조사"], ["ppt", "ppt"], ["script", "대본"], ["attachment", "scheduler.zip"], ["created_at", "2021-05-23 11:03:49.155030"], ["updated_at", "2021-05-23 11:03:49.155030"]]
+  ↳ app/controllers/activities_controller.rb:27
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:27
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/activities/1
+Completed 302 Found in 107ms (ActiveRecord: 15.2ms)
+
+
+Started GET "/activities/1" for 172.17.0.1 at 2021-05-23 11:03:49 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT  "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:62
+  Rendering activities/show.html.erb within layouts/application
+  [1m[36mTeam Load (0.6ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/activities/show.html.erb:5
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/activities/show.html.erb:10
+  Rendered activities/show.html.erb within layouts/application (7.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 44ms (Views: 37.1ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 11:03:55 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities"[0m
+  ↳ app/views/activities/index.html.erb:20
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/activities/index.html.erb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/activities/index.html.erb:23
+  Rendered activities/index.html.erb within layouts/application (5.1ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 40ms (Views: 37.1ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/activities/1" for 172.17.0.1 at 2021-05-23 11:03:59 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"msDGHht5Jyj2quMbIh7fWx8Hzrp4KF87G4wVsFqff5OdVHP00ibiGKft4YgUmi3agOV8mYOB8LT6LiYi8MrhoA==", "id"=>"1"}
+  [1m[36mActivity Load (1.0ms)[0m  [1m[34mSELECT  "activities".* FROM "activities" WHERE "activities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/activities_controller.rb:62
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/activities_controller.rb:52
+  [1m[36mActivity Destroy (0.6ms)[0m  [1m[31mDELETE FROM "activities" WHERE "activities"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/activities_controller.rb:52
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/activities_controller.rb:52
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/activities
+Completed 302 Found in 16ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 11:03:59 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities"[0m
+  ↳ app/views/activities/index.html.erb:20
+  Rendered activities/index.html.erb within layouts/application (3.6ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 72ms (Views: 64.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 11:14:59 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (0.9ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."team_id" IS NULL[0m
+  ↳ app/views/activities/index.html.erb:20
+  Rendered activities/index.html.erb within layouts/application (281.4ms)
+Completed 500 Internal Server Error in 314ms (ActiveRecord: 7.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `write_activity_path' for #<#<Class:0x000055c3c9816c70>:0x000055c3c9822d68>
+Did you mean?  edit_activity_path):
+    36: 
+    37: <br>
+    38: 
+    39: <%= link_to "조별활동과정", write_activity_path(@team), method: :post %>
+  
+app/views/activities/index.html.erb:39:in `_app_views_activities_index_html_erb__455863384809830787_47149693845080'
+Started GET "/activities" for 172.17.0.1 at 2021-05-23 11:18:51 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (1.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."team_id" IS NULL[0m
+  ↳ app/views/activities/index.html.erb:20
+  Rendered activities/index.html.erb within layouts/application (3.8ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 6.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"activities", :team_id=>nil}, missing required keys: [:team_id]):
+    36: 
+    37: <br>
+    38: 
+    39: <%= link_to "조별활동과정", write_activity_path(@team), method: :post %>
+  
+app/views/activities/index.html.erb:39:in `_app_views_activities_index_html_erb__455863384809830787_47149698029100'
+Started GET "/" for 172.17.0.1 at 2021-05-23 11:19:00 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mAdmin Load (2.9ms)[0m  [1m[34mSELECT "admins".* FROM "admins"[0m
+  ↳ app/views/home/index.html.erb:26
+  [1m[36mUht Load (1.9ms)[0m  [1m[34mSELECT "uhts".* FROM "uhts" WHERE "uhts"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/index.html.erb:50
+  Rendered home/index.html.erb within layouts/application (45.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 5195ms (Views: 5171.4ms | ActiveRecord: 15.4ms)
+
+
+Started GET "/teams" for 172.17.0.1 at 2021-05-23 11:19:16 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#index as HTML
+  Rendering teams/index.html.erb within layouts/application
+  [1m[36mTeam Load (0.7ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  ↳ app/views/teams/index.html.erb:17
+  Rendered teams/index.html.erb within layouts/application (12.8ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (34.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 77ms (Views: 30.5ms | ActiveRecord: 38.6ms)
+
+
+Started GET "/teams/1" for 172.17.0.1 at 2021-05-23 11:19:19 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:69
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT MAX("meetings"."start_time") FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 1]]
+  ↳ app/controllers/teams_controller.rb:13
+  Rendering teams/show.html.erb within layouts/application
+  [1m[36mUser Load (48.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:13
+  [1m[36mAdmin Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."user_id" = $1 AND "admins"."team_id" = $2 LIMIT $3[0m  [["user_id", 1], ["team_id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:15
+  [1m[36mUht Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "uhts" WHERE "uhts"."user_id" = $1 AND "uhts"."team_id" = $2 LIMIT $3[0m  [["user_id", 1], ["team_id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:46
+  Rendered teams/show.html.erb within layouts/application (54.6ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 86ms (Views: 24.1ms | ActiveRecord: 54.0ms)
+
+
+Started DELETE "/teams/1" for 172.17.0.1 at 2021-05-23 11:19:28 +0000
+Cannot render console from 10.1.20.239! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"/hdK6OY31SyR2CmXjJ35iHgWMQz0l7RDVT1Fb78r+uH5g/8CL2gQHMCfKwS6GQsJ5/SDLw8+G8y0n3b9FX5k0g==", "id"=>"1"}
+  [1m[36mTeam Load (2.8ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:69
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teams_controller.rb:56
+  [1m[36mAdmin Load (1.4ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."team_id" = $1 LIMIT $2[0m  [["team_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:56
+  [1m[36mUht Load (3.7ms)[0m  [1m[34mSELECT "uhts".* FROM "uhts" WHERE "uhts"."team_id" = $1[0m  [["team_id", 1]]
+  ↳ app/controllers/teams_controller.rb:56
+  [1m[36mMeeting Load (0.4ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 1]]
+  ↳ app/controllers/teams_controller.rb:56
+  [1m[36mMeeting Destroy (1.9ms)[0m  [1m[31mDELETE FROM "meetings" WHERE "meetings"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/teams_controller.rb:56
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."team_id" = $1[0m  [["team_id", 1]]
+  ↳ app/controllers/teams_controller.rb:56
+  [1m[36mTeam Destroy (1.8ms)[0m  [1m[31mDELETE FROM "teams" WHERE "teams"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/teams_controller.rb:56
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teams_controller.rb:56
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/teams
+Completed 302 Found in 175ms (ActiveRecord: 28.8ms)
+
+
+Started GET "/teams" for 172.17.0.1 at 2021-05-23 11:19:28 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#index as HTML
+  Rendering teams/index.html.erb within layouts/application
+  [1m[36mTeam Load (1.0ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  ↳ app/views/teams/index.html.erb:17
+  Rendered teams/index.html.erb within layouts/application (4.6ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 48ms (Views: 44.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 172.17.0.1 at 2021-05-23 11:19:30 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins"[0m
+  ↳ app/views/home/index.html.erb:26
+  [1m[36mUht Load (0.3ms)[0m  [1m[34mSELECT "uhts".* FROM "uhts" WHERE "uhts"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/index.html.erb:50
+  Rendered home/index.html.erb within layouts/application (4.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/teams/new" for 172.17.0.1 at 2021-05-23 11:19:31 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#new as HTML
+  Rendering teams/new.html.erb within layouts/application
+  Rendered teams/_form.html.erb (2.7ms)
+  Rendered teams/new.html.erb within layouts/application (4.2ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 30ms (Views: 28.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/teams" for 172.17.0.1 at 2021-05-23 11:19:38 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iJhf4gfC+yXc62xAP4VScBwzIwgebrsuXa2loJllae3RijZA2nyV+Imk8Vuaz4l6IsZHST2xlV/feum+q1KgSQ==", "team"=>{"t_name"=>"틴탑", "c_name"=>"전공캡스톤디자인", "p_name"=>"김성희"}, "commit"=>"Create Team"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teams_controller.rb:31
+  [1m[36mTeam Create (0.5ms)[0m  [1m[32mINSERT INTO "teams" ("t_name", "c_name", "p_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["t_name", "틴탑"], ["c_name", "전공캡스톤디자인"], ["p_name", "김성희"], ["created_at", "2021-05-23 11:19:38.188668"], ["updated_at", "2021-05-23 11:19:38.188668"]]
+  ↳ app/controllers/teams_controller.rb:31
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teams_controller.rb:31
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/teams/2/admin_connect
+Completed 302 Found in 7ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/teams/2/admin_connect" for 172.17.0.1 at 2021-05-23 11:19:38 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#admin_connect as HTML
+  Parameters: {"team_id"=>"2"}
+  Rendering teams/admin_connect.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/admin_connect.html.erb:3
+  Rendered teams/admin_connect.html.erb within layouts/application (2.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 22.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/admins?admin%5Bteam_id%5D=2&admin%5Buser_id%5D=1" for 172.17.0.1 at 2021-05-23 11:19:39 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by AdminsController#create as HTML
+  Parameters: {"authenticity_token"=>"vD7v82QJHxYP2pmJRozhzHs0oifkoMqn4Q12WMsoZmS7qloZrVbaJl6dmxpwCBNN5NYQBB8JZSgAr0XKYX34Vw==", "admin"=>{"team_id"=>"2", "user_id"=>"1"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/admins_controller.rb:28
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/admins_controller.rb:28
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/admins_controller.rb:28
+  [1m[36mAdmin Create (1.1ms)[0m  [1m[32mINSERT INTO "admins" ("user_id", "team_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["team_id", 2], ["created_at", "2021-05-23 11:19:39.664949"], ["updated_at", "2021-05-23 11:19:39.664949"]]
+  ↳ app/controllers/admins_controller.rb:28
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/admins_controller.rb:28
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/home/index
+Completed 302 Found in 91ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/home/index" for 172.17.0.1 at 2021-05-23 11:19:39 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins"[0m
+  ↳ app/views/home/index.html.erb:26
+  [1m[36mUht Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "uhts" WHERE "uhts"."user_id" = $1 AND "uhts"."team_id" = $2 LIMIT $3[0m  [["user_id", 1], ["team_id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:28
+  [1m[36mTeam Load (0.4ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:32
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:33
+  [1m[36mUht Load (0.3ms)[0m  [1m[34mSELECT "uhts".* FROM "uhts" WHERE "uhts"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/index.html.erb:50
+  Rendered home/index.html.erb within layouts/application (9.7ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 27.8ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/uhts?uht%5Bteam_id%5D=2&uht%5Buser_id%5D=1" for 172.17.0.1 at 2021-05-23 11:19:43 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UhtsController#create as HTML
+  Parameters: {"authenticity_token"=>"LCPf7quqeBpU8cmQ19jslJK22maA0KGHbHwxwlb0+hort2oEYvW9KgW2ywPhXB4VDVRoRXt5DgiN3gJQ/KFkKQ==", "uht"=>{"team_id"=>"2", "user_id"=>"1"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/uhts_controller.rb:29
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/uhts_controller.rb:29
+  [1m[36mTeam Load (0.4ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/uhts_controller.rb:29
+  [1m[36mUht Create (1.0ms)[0m  [1m[32mINSERT INTO "uhts" ("user_id", "team_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["team_id", 2], ["created_at", "2021-05-23 11:19:43.441004"], ["updated_at", "2021-05-23 11:19:43.441004"]]
+  ↳ app/controllers/uhts_controller.rb:29
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/uhts_controller.rb:29
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/teams/2
+Completed 302 Found in 39ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/teams/2" for 172.17.0.1 at 2021-05-23 11:19:43 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:69
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT MAX("meetings"."start_time") FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/controllers/teams_controller.rb:13
+  Rendering teams/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:13
+  [1m[36mAdmin Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."user_id" = $1 AND "admins"."team_id" = $2 LIMIT $3[0m  [["user_id", 1], ["team_id", 2], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:15
+  [1m[36mAdmin Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:24
+  [1m[36mMeeting Load (0.7ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."start_time" IS NULL[0m
+  ↳ app/views/teams/show.html.erb:33
+  Rendered teams/show.html.erb within layouts/application (7.6ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 25.4ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/2/activities_list" for 172.17.0.1 at 2021-05-23 11:19:44 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ActivitiesController#index as HTML
+  Parameters: {"authenticity_token"=>"kbfRVCtIks7XnI8mUzMcx2Vy4Ff4FM4+sUGapFndmAqWI2S+4hdX/obbjbVlt+5G+pBSdAO9YbFQ46k284gGOQ==", "team_id"=>"2"}
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/views/activities/index.html.erb:20
+  Rendered activities/index.html.erb within layouts/application (2.1ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 27ms (Views: 25.2ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/2/meetings" for 172.17.0.1 at 2021-05-23 11:19:49 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#new as HTML
+  Parameters: {"authenticity_token"=>"kbfRVCtIks7XnI8mUzMcx2Vy4Ff4FM4+sUGapFndmAqWI2S+4hdX/obbjbVlt+5G+pBSdAO9YbFQ46k284gGOQ==", "team_id"=>"2"}
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (11.4ms)
+  [1m[36mMeeting Load (0.6ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/views/meetings/new.html.erb:7
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (16.9ms)
+  Rendered meetings/new.html.erb within layouts/application (89.5ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 129ms (Views: 125.8ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/2/members" for 172.17.0.1 at 2021-05-23 11:19:56 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UhtsController#index as HTML
+  Parameters: {"authenticity_token"=>"kbfRVCtIks7XnI8mUzMcx2Vy4Ff4FM4+sUGapFndmAqWI2S+4hdX/obbjbVlt+5G+pBSdAO9YbFQ46k284gGOQ==", "team_id"=>"2"}
+  Rendering uhts/index.html.erb within layouts/application
+  [1m[36mUht Load (0.4ms)[0m  [1m[34mSELECT "uhts".* FROM "uhts"[0m
+  ↳ app/views/uhts/index.html.erb:15
+  [1m[36mTeam Load (0.9ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/uhts/index.html.erb:25
+  Rendered uhts/index.html.erb within layouts/application (4.2ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 27ms (Views: 23.9ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/2/meetings" for 172.17.0.1 at 2021-05-23 11:20:14 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#new as HTML
+  Parameters: {"authenticity_token"=>"kbfRVCtIks7XnI8mUzMcx2Vy4Ff4FM4+sUGapFndmAqWI2S+4hdX/obbjbVlt+5G+pBSdAO9YbFQ46k284gGOQ==", "team_id"=>"2"}
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (5.1ms)
+  [1m[36mMeeting Load (0.5ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/views/meetings/new.html.erb:7
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (7.2ms)
+  Rendered meetings/new.html.erb within layouts/application (19.9ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 42ms (Views: 39.9ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/meetings" for 172.17.0.1 at 2021-05-23 11:20:23 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CzVGEHKmYc3GV3Nx8sl/UyADugzVJqcILNaqBmgvmGUMofP6u/mk/ZcQceLETY3Sv+EILy6PCIfNdJmUwnoGVg==", "meeting"=>{"team_id"=>"2", "schedule"=>"회의하기", "start_time(1i)"=>"2021", "start_time(2i)"=>"5", "start_time(3i)"=>"23", "start_time(4i)"=>"14", "start_time(5i)"=>"00", "place"=>"지천관 601호"}, "commit"=>"Create Meeting"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/meetings_controller.rb:29
+  [1m[36mTeam Load (90.7ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/meetings_controller.rb:29
+  [1m[36mMeeting Create (0.9ms)[0m  [1m[32mINSERT INTO "meetings" ("team_id", "schedule", "start_time", "place", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["team_id", 2], ["schedule", "회의하기"], ["start_time", "2021-05-23 14:00:00"], ["place", "지천관 601호"], ["created_at", "2021-05-23 11:20:23.365918"], ["updated_at", "2021-05-23 11:20:23.365918"]]
+  ↳ app/controllers/meetings_controller.rb:29
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/meetings_controller.rb:29
+Redirected to http://jo-byeol-mbjdm.run.goorm.io/2/meetings
+Completed 302 Found in 104ms (ActiveRecord: 94.9ms)
+
+
+Started GET "/2/meetings" for 172.17.0.1 at 2021-05-23 11:20:23 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#new as HTML
+  Parameters: {"team_id"=>"2"}
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (4.5ms)
+  [1m[36mMeeting Load (0.4ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/views/meetings/new.html.erb:7
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (7.2ms)
+  Rendered meetings/new.html.erb within layouts/application (17.5ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 42ms (Views: 40.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/teams/2" for 172.17.0.1 at 2021-05-23 11:20:28 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeam Load (0.5ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:69
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT MAX("meetings"."start_time") FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/controllers/teams_controller.rb:13
+  Rendering teams/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:13
+  [1m[36mAdmin Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."user_id" = $1 AND "admins"."team_id" = $2 LIMIT $3[0m  [["user_id", 1], ["team_id", 2], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:15
+  [1m[36mAdmin Exists (2.2ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:24
+  [1m[36mMeeting Load (0.4ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."start_time" = $1[0m  [["start_time", "2021-05-23 14:00:00"]]
+  ↳ app/views/teams/show.html.erb:33
+  Rendered teams/show.html.erb within layouts/application (18.3ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 50.0ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/" for 172.17.0.1 at 2021-05-23 11:20:32 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT "admins".* FROM "admins"[0m
+  ↳ app/views/home/index.html.erb:26
+  [1m[36mUht Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "uhts" WHERE "uhts"."user_id" = $1 AND "uhts"."team_id" = $2 LIMIT $3[0m  [["user_id", 1], ["team_id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:28
+  [1m[36mUht Load (0.5ms)[0m  [1m[34mSELECT "uhts".* FROM "uhts" WHERE "uhts"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/index.html.erb:50
+  [1m[36mTeam Load (0.4ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:54
+  [1m[36mAdmin Load (7.7ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/views/home/index.html.erb:56
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/index.html.erb:57
+  Rendered home/index.html.erb within layouts/application (37.0ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 89ms (Views: 76.6ms | ActiveRecord: 10.7ms)
+
+
+Started GET "/teams/2/edit" for 172.17.0.1 at 2021-05-23 11:20:34 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeam Load (1.2ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:69
+  Rendering teams/edit.html.erb within layouts/application
+  Rendered teams/_form.html.erb (2.3ms)
+  Rendered teams/edit.html.erb within layouts/application (3.6ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 102ms (Views: 95.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/teams/2" for 172.17.0.1 at 2021-05-23 11:20:43 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:69
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT MAX("meetings"."start_time") FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/controllers/teams_controller.rb:13
+  Rendering teams/show.html.erb within layouts/application
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:13
+  [1m[36mAdmin Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."user_id" = $1 AND "admins"."team_id" = $2 LIMIT $3[0m  [["user_id", 1], ["team_id", 2], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:15
+  [1m[36mAdmin Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/teams/show.html.erb:24
+  [1m[36mMeeting Load (0.3ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."start_time" = $1[0m  [["start_time", "2021-05-23 14:00:00"]]
+  ↳ app/views/teams/show.html.erb:33
+  Rendered teams/show.html.erb within layouts/application (11.4ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 36.3ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/2/meetings" for 172.17.0.1 at 2021-05-23 11:20:44 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#new as HTML
+  Parameters: {"authenticity_token"=>"JDBjN8Lfc8/cGBRrPwF+OuKVNuDe93pIRMvQqRqI8Z8jpNbdC4C2/41fFvgJhYy7fXeEwyVe1celaeM7sN1vrA==", "team_id"=>"2"}
+  Rendering meetings/new.html.erb within layouts/application
+  Rendered meetings/_form.html.erb (8.3ms)
+  [1m[36mMeeting Load (0.6ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."team_id" = $1[0m  [["team_id", 2]]
+  ↳ app/views/meetings/new.html.erb:7
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (44.1ms)
+  Rendered meetings/new.html.erb within layouts/application (65.0ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 131ms (Views: 128.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/meetings" for 172.17.0.1 at 2021-05-23 11:20:50 +0000
+Cannot render console from 10.1.21.240! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by MeetingsController#index as HTML
+  Rendering meetings/index.html.erb within layouts/application
+  [1m[36mMeeting Load (0.4ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/views/meetings/index.html.erb:1
+  Rendered /usr/local/lib/ruby/gems/2.6.0/gems/simple_calendar-2.4.2/app/views/simple_calendar/_month_calendar.html.erb (9.0ms)
+  [1m[36mTeam Load (0.4ms)[0m  [1m[34mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/meetings/index.html.erb:27
+  Rendered meetings/index.html.erb within layouts/application (15.0ms)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:15
+Completed 200 OK in 39ms (Views: 36.2ms | ActiveRecord: 1.1ms)
+
+

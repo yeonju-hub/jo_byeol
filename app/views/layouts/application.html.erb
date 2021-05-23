@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoormRailsApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+	<div id="wrap">
+		<p class="navbar-text pull-right">
+			<% if user_signed_in? %>
+				<%= link_to "미치겠어", root_path %>
+				Logged in as <%= current_user.email %>. |
+				user ID : <%= current_user.id %>
+				<%= link_to "회원정보 수정", edit_user_registration_path, :class => 'navbar-link' %> |
+				<%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+			<% else %>
+			  	<%= link_to "미치겠어", root_path %>
+				<%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link' %> |
+				<%= link_to "로그인", new_user_session_path, :class => 'navbar-link' %>
+			<% end %>
+		</p>
+	</div>
+    <%= yield %>
+  </body>
+</html>

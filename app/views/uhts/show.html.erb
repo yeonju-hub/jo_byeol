@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @uht.user %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @uht.team %>
+</p>
+
+<%= link_to 'Edit', edit_uht_path(@uht) %> |
+<%= link_to 'Back', uhts_path %>

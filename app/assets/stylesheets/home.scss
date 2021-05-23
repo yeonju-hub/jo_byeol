@@ -1,0 +1,76 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+#wrap_main {
+	width:1400px;
+	margin-top:20px;
+}
+
+#wrap_main a {
+	text-decoration:none;
+}
+
+.user_profile {
+	width:1400px;
+	float: left;
+	font-size: 20px;
+    background: #aaa;
+}
+
+
+.team_list {
+	width:1400px;
+	float: left;
+	margin-top:40px;
+}
+
+.team_list .box {
+	width:1400px;
+	height:140px;
+	font-size: 20px;
+	margin-top:20px;
+	border: 1px solid #E6E6E6;
+	padding:20px;
+	float:left;
+}
+
+.team_list .contents {
+	width:1088px;
+	height:100px;
+	float: left;
+	background: #aac;
+}
+
+.team_list .buttons {
+	width: 270px;
+	float: left;
+	background: #abc;
+	padding-left:10px;
+	margin-top:20px;
+}
+
+.new_team {
+	width:1400px;
+	height:100px;
+	margin-top: 20px;
+	float:left;
+}
+
+.new_team a {
+	width:1400px;
+	height:100px;
+	color:#1C1C1C;
+	font-size: 30px;
+	text-align: center;
+	padding-top:25px;
+	float:left;
+	background: #E6E6E6;
+}
+
+.new_team a:hover {
+	background: #E6E6E6;
+	color:#1C1C1C;
+}

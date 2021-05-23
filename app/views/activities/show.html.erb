@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @activity.team %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @activity.user %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @activity.title %>
+</p>
+
+<p>
+  <strong>Research:</strong>
+  <%= @activity.research %>
+</p>
+
+<p>
+  <strong>Ppt:</strong>
+  <%= @activity.ppt %>
+</p>
+
+<p>
+  <strong>Script:</strong>
+  <%= @activity.script %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @activity.attachment %>
+</p>
+
+ <%= link_to "Download file", @activity.attachment_url, download: "Activity_#{@activity.id}_attachment" %>
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<%= link_to 'Back', activities_path %>

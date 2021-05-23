@@ -1,0 +1,70 @@
+// Place all the styles related to the teams controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+* {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+	text-decoration: none;
+}
+
+#wrap {
+	margin-top:20px;
+	width:1600px;
+}
+
+.team_page {
+	width: 1600px;
+    height: 850px;
+    float: left;
+	background: #ccc;
+}
+
+.category {
+    width: 250px;
+    height: 850px;
+    float: left;
+    background: #ccc;
+}
+
+
+.category .nav{
+	width: 250px; 
+	height: 850px; 
+	background: #888;
+}
+
+
+.category .nav li {
+	width: 250px; 
+	text-align: center; 
+	background: #b39ddb;
+	margin-left:-32px;
+}
+
+
+.category .nav li a {
+	width: 250px; 
+	padding: 30px; 
+	display: block; 
+	color: #fff; 
+	background: rgba(0,0,0,0.3);
+}
+
+
+.category .nav li a:hover{
+	background: rgba(0,0,0,0.4);
+}
+
+
+.category .nav li ul.submenu{
+	display: none;
+}
+
+.team_page .contens {
+	width: 1350px;
+    height: 850px;
+    float: left;
+    background: #ccc;
+}
+

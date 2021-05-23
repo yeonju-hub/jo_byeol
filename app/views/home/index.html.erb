@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+</head>
+
+<body>
+	<div id="wrap_main">
+		<% if user_signed_in? %>
+			<div class="user_profile">	
+				<H2>
+					프로필
+				</H2>
+				<%= current_user.name %><br />
+				<%= current_user.email %>
+				<%= link_to "프로필 설정", edit_user_registration_path, :class => 'navbar-link', style:"float:right;" %>
+			</div>	
+		
+			<div class="team_list">
+				<H2>
+					팀 리스트
+				</H2>
+				
+
+				
+				<% @admins.each do |admins| %>
+					<% if admins.user_id == current_user.id %>	
+						<% if Uht.where(user_id: current_user.id, team_id: admins.team_id).exists? == false %>
+				
+				<div class="box">
+					<div class="contents">
+									<%= Team.find(admins.team_id).t_name %><br><br>
+									|소유자| <%= User.find(current_user.id).email %><br>
+					</div>		
+
+					<div class="buttons">
+						<button class="btn btn-default" type="button" style="width:110px; background:#ffffff; float:left; margin-top:10px;"><%= link_to '팀 관리', edit_team_path(admins.team_id),
+							style: "text-decoration: none; color:#1C1C1C;" %></button>
+						<%= button_to '팀으로 가기', uhts_path(uht: { user_id: current_user.id, team_id: admins.team_id }), class:"btn btn-warning", 
+											type:"submit", style:"width:120px; background:#FDD806; color:#1C1C1C; float:left; margin-top:10px; margin-right:10px; float:right;" %><br><br>
+					</div>
+				</div>
+						<% end %>	
+					<% end %>
+				<% end %>
+
+				
+				
+				<% @uht = Uht.where(user_id: current_user.id) %>
+				<% @uht.each do |uht| %>
+				
+				<div class="box">
+					<div class="contents">	
+						<%= Team.find(uht.team_id).t_name %><br><br>
+						<% @admin = Admin.where(team_id: uht.team_id) %>
+						<% @admin.each do |admin| %>
+							|소유자|  <%= User.find(admin.user_id).email %><br>
+					</div>
+					
+					<div class="buttons">
+							<% if admin.user_id == current_user.id %>
+								<button class="btn btn-default" type="button" style="width:110px; background:#ffffff; float:left; margin-top:10px;"><%= link_to '팀 관리', edit_team_path(uht.team_id),
+									style: "text-decoration: none; color:#1C1C1C;"%></button>
+							<% end %>
+						<% end %>
+					
+						<button class="btn btn-warning" type="submit" style="width:120px; background:#FDD806; float:right; margin-top:10px; margin-right:10px;"><%= link_to '팀으로 가기', team_path(uht.team_id), 
+							style: "text-decoration: none; color:#1C1C1C;" %></button><br><br>
+					</div>
+				</div>
+						
+				<% end %>
+
+				
+				
+			</div>
+			
+		<div class="new_team">
+			<a href="<%= new_team_path %>" >+ 팀 생성하기</a>
+		
+			
+		</div>
+		<% else %>
+				협업툴 어쩌고 저쩌고
+		<% end %>
+			
+		
+		
+	</div>
+</body>
