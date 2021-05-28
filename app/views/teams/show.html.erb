@@ -11,8 +11,8 @@
 		<div class="team_page">
 			
 			<% if user_signed_in? %>
-			<% @@uht = Uht.where(team_id: @team.id) %>
-				<% if Admin.where(user_id: current_user.id, team_id: @team.id).exists? %>
+			<% @@uht = Uht.where(team_id: params[:id]) %>
+				<% if Admin.where(user_id: current_user.id, team_id: params[:id]).exists? %>
 					
 			
 					<div class="category">
@@ -24,9 +24,11 @@
 								<li><a href="#">공지사항</a></li>
 								<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
 								<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
-								<% if Admin.where(user_id: current_user.id).exists? %>
-								<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
-								<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+								<% @admin.each do |admin| %>
+									<% if admin.user_id == current_user.id %>
+									<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
+									<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+									<% end %>
 								<% end %>
 							</ul>
 						</nav>
@@ -67,9 +69,11 @@
 									<li><a href="#">공지사항</a></li>
 									<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
 									<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
-									<% if Admin.where(user_id: current_user.id).exists? %>
+									<% @admin.each do |admin| %>
+										<% if admin.user_id == current_user.id %>
 										<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
 										<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+										<% end %>
 									<% end %>
 								</ul>
 							</nav>

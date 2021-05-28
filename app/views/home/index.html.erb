@@ -6,20 +6,19 @@
 
 <body>
 	<div id="wrap_main">
-		<% if user_signed_in? %>
+	<% if user_signed_in? %>
+		
 			<div class="user_profile">	
-				<H2>
-					프로필
-				</H2>
+				<H5>프로필</H5>
 				<%= current_user.name %><br />
 				<%= current_user.email %>
 				<%= link_to "프로필 설정", edit_user_registration_path, :class => 'navbar-link', style:"float:right;" %>
 			</div>	
 		
 			<div class="team_list">
-				<H2>
+				<H5>
 					팀 리스트
-				</H2>
+				</H5>
 				
 
 				
@@ -30,14 +29,14 @@
 				<div class="box">
 					<div class="contents">
 									<%= Team.find(admins.team_id).t_name %><br><br>
-									|소유자| <%= User.find(current_user.id).email %><br>
+									<img src="<%= asset_path 'owner.png' %>" > <%= User.find(current_user.id).email %><br>
 					</div>		
 
 					<div class="buttons">
-						<button class="btn btn-default" type="button" style="width:110px; background:#ffffff; float:left; margin-top:10px;"><%= link_to '팀 관리', edit_team_path(admins.team_id),
-							style: "text-decoration: none; color:#1C1C1C;" %></button>
-						<%= button_to '팀으로 가기', uhts_path(uht: { user_id: current_user.id, team_id: admins.team_id }), class:"btn btn-warning", 
-											type:"submit", style:"width:120px; background:#FDD806; color:#1C1C1C; float:left; margin-top:10px; margin-right:10px; float:right;" %><br><br>
+						<button class="btn btn-default" type="button" style="width:40%; background:#ffffff; float:left; border: 1px solid #E6E6E6;">
+							<%= link_to '팀 관리', edit_team_path(admins.team_id), style: "text-decoration: none; color:#1C1C1C;" %></button>
+						<%= button_to '팀으로 가기', uhts_path(uht: { user_id: current_user.id, team_id: admins.team_id }), class:"btn btn-default", 
+											type:"button", style:"width:50%; background:#B890D3; color:#1C1C1C; float:right;" %><br><br>
 					</div>
 				</div>
 						<% end %>	
@@ -54,18 +53,18 @@
 						<%= Team.find(uht.team_id).t_name %><br><br>
 						<% @admin = Admin.where(team_id: uht.team_id) %>
 						<% @admin.each do |admin| %>
-							|소유자|  <%= User.find(admin.user_id).email %><br>
+						<img src="<%= asset_path 'owner.png' %>" ><%= User.find(admin.user_id).email %><br>
 					</div>
 					
 					<div class="buttons">
 							<% if admin.user_id == current_user.id %>
-								<button class="btn btn-default" type="button" style="width:110px; background:#ffffff; float:left; margin-top:10px;"><%= link_to '팀 관리', edit_team_path(uht.team_id),
-									style: "text-decoration: none; color:#1C1C1C;"%></button>
+								<button class="btn btn-default" type="button" style="width:40%; background:#ffffff; float:left; border: 1px solid #E6E6E6;">
+									<%= link_to '팀 관리', edit_team_path(uht.team_id), style: "text-decoration: none; color:#1C1C1C;"%></button>
 							<% end %>
 						<% end %>
 					
-						<button class="btn btn-warning" type="submit" style="width:120px; background:#FDD806; float:right; margin-top:10px; margin-right:10px;"><%= link_to '팀으로 가기', team_path(uht.team_id), 
-							style: "text-decoration: none; color:#1C1C1C;" %></button><br><br>
+						<button class="btn btn-default" type="button" style="width:50%; background:#B890D3; float:right;">
+							<%= link_to '팀으로 가기', team_path(uht.team_id), style: "text-decoration: none; color:#1C1C1C;" %></button><br><br>
 					</div>
 				</div>
 						
@@ -80,19 +79,55 @@
 		</div>
 		
 		
-		
-		<% else %>
-			<div id="wrap_main">
-				<div class="banner">
-					<H1>오오</H1>
-						<img src="<%= asset_path 'teentop.jpg' %>" >
+	<% else %>	
+				<div class="banner_bono">
+					<div class="bono_img">
+						<img src="<%= asset_path 'bono1.jpg' %>" >
+					</div>
+					
+					<strong>올인원 워크스페이스</strong>
+					<p>조별 미치겠어 하나만 있으면 작성, 계획, 협업을 모두 할 수 있습니다.</p>
+					<button class="btn btn-default" type="button" style="width:120px; background:#B890D3; margin-top:20px;">
+						<%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link', style: "text-decoration: none; color:#1C1C1C;" %></button>
+					<br>
+					
+					
+					<div class="img1">
+						<img src="<%= asset_path 'img1.png' %>" >
+						
+						<div class="dora">
+							<img src="<%= asset_path 'dora.jpg' %>" >
+						</div>
+						
+						
+						
+						
+					</div>
+					<div class="img1_box">
+							
+					</div>
+					
+					
+					<div class="img2">
+						<img src="<%= asset_path 'img2.png' %>" >
+						
+						<div class="keroro">
+							<img src="<%= asset_path 'keroro1.jpg' %>" >
+						</div>
+						
+					</div>
+					
+					<div class="img2_box">
+							
+					</div>
+					
+					<img src="<%= asset_path 'sic2.jpg' %>" >
 					
 				</div>
-				<img src="<%= asset_path 'bono.jpg' %>" >
-			</div>
+			
 		<% end %>
 			
 		
-		
-	</div>
+	</div>	
+	
 </body>

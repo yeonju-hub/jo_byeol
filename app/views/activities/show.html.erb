@@ -36,5 +36,7 @@
 </p>
 
  <%= link_to "Download file", @activity.attachment_url, download: "Activity_#{@activity.id}_attachment" %>
-<%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back', activities_path %>
+ <% if @activity.user_id == current_user.id %>
+							<td><%= link_to '수정', edit_activity_path(@activity) %></td>
+							<td><%= link_to '삭제하기', @activity, method: :delete, data: { confirm: '정말 삭제하시겠습니까??' } %></td>
+						  <% end %>

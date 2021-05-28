@@ -14,6 +14,8 @@ class MeetingsController < ApplicationController
   def new
 	@meetings = Meeting.where(team_id: params[:team_id]).all
     @meeting = Meeting.new
+	@team = params[:team_id]
+	@admin = Admin.where(team_id: @team)
   end
 
   # GET /meetings/1/edit

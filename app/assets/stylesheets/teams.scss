@@ -9,22 +9,18 @@
 }
 
 #wrap {
-	margin-top:20px;
 	width:1600px;
 }
 
 .team_page {
 	width: 1600px;
-    height: 850px;
     float: left;
-	background: #ccc;
 }
 
 .category {
     width: 250px;
     height: 850px;
     float: left;
-    background: #ccc;
 }
 
 .category .team_main a {
@@ -34,35 +30,34 @@
 	text-align: center;
 	padding-top:15px;
 	font-size:25px;
+	background: #E6E6E6;
 }
 
 
 .category .nav{
 	width: 250px; 
-	height: 780px; 
-	background: #888;
+	height: 750px; 
+	border: 1px solid #E6E6E6;
 }
 
 
 .category .nav li {
 	width: 250px; 
 	text-align: center; 
-	background: #b39ddb;
-	margin-left:-32px;
+	margin-left:-33px;
 }
 
 
 .category .nav li a {
 	width: 250px; 
-	padding: 30px; 
+	padding: 20px; 
 	display: block; 
-	color: #fff; 
-	background: rgba(0,0,0,0.3);
+	font-size:15px;
 }
 
 
 .category .nav li a:hover{
-	background: rgba(0,0,0,0.4);
+	background: rgba(0,0,0,0.1);
 }
 
 
@@ -76,7 +71,10 @@
 	padding: 20px;
     float: left;
 	text-align: center; 
-    background: #ccc;
+}
+.team_page .contents a {
+	width:300px;
+	height:200px;
 }
 
 
@@ -86,4 +84,18 @@
 	font-size: 20px;
 	background: #cda;
 	border: 1px solid #E6E6E6;
+}
+
+.team_edit {
+	width:1600px;
+	float:left;
+	margin-top:20px;
+	text-align:center;
+}
+
+.team_new {
+	width:1600px;
+	float:left;
+	margin-top:20px;
+	text-align:center;
 }

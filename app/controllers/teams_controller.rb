@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
 	@t = Time.now
 	@meeting = Meeting.where(team_id: params[:id])
 	@lately_meeting = Meeting.where(start_time: @meeting.maximum("start_time"))
+	@admin = Admin.where(team_id: params[:id])
   end
 
   # GET /teams/new
@@ -20,6 +21,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+	  @admin = Admin.where(team_id: params[:id])
   end
 
   # POST /teams or /teams.json

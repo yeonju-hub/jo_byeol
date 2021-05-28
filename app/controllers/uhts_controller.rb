@@ -6,6 +6,7 @@ class UhtsController < ApplicationController
     @uhts = Uht.all
 	@team = Team.find(params[:team_id])
 	@uht = Uht.where(team_id: @team)
+	@admin = Admin.where(team_id: @team)
   end
 
   # GET /uhts/1 or /uhts/1.json
@@ -24,11 +25,11 @@ class UhtsController < ApplicationController
   # POST /uhts or /uhts.json
   def create
     @uht = Uht.new(uht_params)
-	team_id = @uht.team_id
+	@team_id = @uht.team_id
 
     respond_to do |format|
       if @uht.save
-        format.html { redirect_to team_path(team_id), notice: "Uht was successfully created." }
+        format.html { redirect_to team_path(@team_id), notice: "Uht was successfully created." }
         format.json { render :show, status: :created, location: @uht }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -53,8 +54,10 @@ class UhtsController < ApplicationController
   # DELETE /uhts/1 or /uhts/1.json
   def destroy
     @uht.destroy
+	@team_id = @uht.team_id
+	  
     respond_to do |format|
-      format.html { redirect_to uhts_url, notice: "Uht was successfully destroyed." }
+      format.html { redirect_to members_path(@team_id), notice: "Uht was successfully destroyed." }
       format.json { head :no_content }
     end
   end

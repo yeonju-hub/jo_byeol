@@ -12,26 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :team_id %>
-    <%= form.text_field :team_id, value: params[:team_id] %>
+    <%= form.hidden_field :team_id, value: params[:team_id] %>
   </div>
 
   <div class="field">
-    <%= form.label :schedule %>
+    일정
     <%= form.text_field :schedule %>
   </div>
 
   <div class="field">
-    <%= form.label :start_time %>
+    날짜
     <%= form.datetime_select :start_time %>
   </div>
 
   <div class="field">
-    <%= form.label :place %>
+    장소
     <%= form.text_field :place %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <input type="submit" value="확인" />
   </div>
 <% end %>

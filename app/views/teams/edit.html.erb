@@ -1,6 +1,27 @@
-<h1>Editing Team</h1>
+<div id="wrap">
+	<div class="team_edit">
+		<div class="category">
+						<div class="team_main">
+							<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
+						</div>
+						<nav class="nav">
+							<ul>
+								<li><a href="#">공지사항</a></li>
+								<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
+								<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
+								<% @admin.each do |admin| %>
+									<% if admin.user_id == current_user.id %>
+									<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
+									<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+									<% end %>
+								<% end %>
+							</ul>
+						</nav>
+					</div>
+		<h1>팀 정보 수정</h1><br>
 
-<%= render 'form', team: @team %>
+		<%= render 'form', team: @team %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+	</div>
+	
+</div>

@@ -1,5 +1,30 @@
-<h1>New Activity</h1>
+<div id="wrap">
+	<div class="category">
+		<div class="team_main">
+			<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>"><%= Team.find(params[:team_id]).t_name %></a>
+		</div>
+		<nav class="nav">
+			<ul>
+				<li><a href="#">공지사항</a></li>
+				<li><%= link_to "조별활동과정", activity_list_path(params[:team_id]), method: :post %></li>
+				<li><%= link_to "일정관리", write_meeting_path(params[:team_id]), method: :post %></li>
+					<% @admin.each do |admin| %>
+						<% if admin.user_id == current_user.id %>
+							<li><%= link_to "멤버관리", members_path(params[:team_id]), method: :post %></li>
+							<li><%= link_to "팀관리", edit_team_path(params[:team_id]) %></li>
+						<% end %>
+					<% end %>
+			</ul>
+		</nav>
+	</div>
 
-<%= render 'form', activity: @activity %>
+	
+	<div class="activity_new">
+		<h1>새 자료</h1><br><br>
 
-<%= link_to 'Back', activities_path %>
+		
+		
+		<%= render 'form', activity: @activity %>
+
+	</div>
+</div>

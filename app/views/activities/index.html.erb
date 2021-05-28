@@ -1,39 +1,68 @@
-<p id="notice"><%= notice %></p>
+<DOCTYPE html>
+<html lang="ko">
+<head>
+	
+</head>
 
-<h1>Activities</h1>
+<body>
+	<div id="wrap">
+	
+		<div class="category">
+			<div class="team_main">
+				<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>"><%= Team.find(params[:team_id]).t_name %></a>
+			</div>
+			<nav class="nav">
+				<ul>
+					<li><a href="#">공지사항</a></li>
+					<li><%= link_to "조별활동과정", activity_list_path(params[:team_id]), method: :post %></li>
+					<li><%= link_to "일정관리", write_meeting_path(params[:team_id]), method: :post %></li>
+						<% @admin.each do |admin| %>
+							<% if admin.user_id == current_user.id %>
+								<li><%= link_to "멤버관리", members_path(params[:team_id]), method: :post %></li>
+								<li><%= link_to "팀관리", edit_team_path(params[:team_id]) %></li>
+							<% end %>
+						<% end %>
+				</ul>
+			</nav>
+		</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Team</th>
-      <th>User</th>
-      <th>Title</th>
-      <th>Research</th>
-      <th>Ppt</th>
-      <th>Script</th>
-      <th>Attachment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+		
 
-  <tbody>
-    <% @activities.each do |activity| %>
-      <tr>
- 		<td><%= activity.team_id %></td>
-        <td><%= activity.user_id %></td>
-        <td><%= activity.title %></td>
-        <td><%= activity.research %></td>
-        <td><%= activity.ppt %></td>
-        <td><%= activity.script %></td>
-        <td><%= activity.attachment %></td>
-        <td><%= link_to 'Show', activity %></td>
-        <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-        <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+		<div class="activities">
+			<button class="btn btn-default" type="button" style="width:100px; background:#B890D3; float:right;">
+						<%= link_to "작성하기", write_activity_path(@team), method: :post, style: "text-decoration: none; color:#1C1C1C;" %></button><br><br><br>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>자료첨부</th>
+					  <th colspan="3"></th>
+					</tr>
+				 </thead>
+			
+				<tbody>
+					<% @activities.each do |activity| %>
+					  <tr>
+						<td><%= activity.title %></td>
+						<td><%= User.find(activity.user_id).name %></td>
 
-<%= link_to "조별활동과정", write_activity_path(@team), method: :post %>
+						  <%if activity.attachment.nil? %>
+							<td>X</td>
+						  <% else %>
+							<td>O</td>
+						  <% end %>
+
+						  <td><%= link_to '보기', activity %></td>
+						 
+					  </tr>
+					<% end %>
+				</tbody>
+			</table>
+			
+  		</div>
+		
+	</div>
+</body>
+
