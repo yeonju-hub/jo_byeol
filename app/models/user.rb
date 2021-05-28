@@ -8,4 +8,6 @@ class User < ApplicationRecord
 	has_many :uhts, dependent: :destroy
 	has_many :teams, :through => :uhts
 	has_many :activities, dependent: :destroy
+	has_many :posts, dependent: :destroy
+	has_many :comments, dependent: :destroy
 end

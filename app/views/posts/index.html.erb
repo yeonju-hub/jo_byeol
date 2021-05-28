@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<button class="btn btn-default" type="button" style="width:100px; background:#B890D3; float:right;">
+						<%= link_to "작성하기", write_post_path(@team), method: :post, style: "text-decoration: none; color:#1C1C1C;" %></button>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Team</th>
+      <th>Title</th>
+      <th>Contents</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.user %></td>
+        <td><%= post.team %></td>
+        <td><%= post.title %></td>
+        <td><%= post.contents %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

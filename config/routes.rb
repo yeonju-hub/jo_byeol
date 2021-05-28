@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :posts
   resources :activities
   resources :meetings
   get 'home/index'
@@ -23,4 +25,10 @@ Rails.application.routes.draw do
 	
 	post '/:team_id/members' => 'uhts#index', as: 'members'
 	get '/:team_id/members' => 'uhts#index', as: 'get_members'
+	
+	post '/:team_id/posts_list' => 'posts#index', as: 'post_list'
+	get '/:team_id/posts_list' => 'posts#index', as: 'get_post_list'
+	
+	post '/:team_id/posts' => 'posts#new', as: 'write_post'
+	get '/:team_id/posts' => 'posts#new', as: 'get_write_post'
 end
