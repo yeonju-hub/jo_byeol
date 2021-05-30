@@ -1,5 +1,33 @@
+<div id="wrap" class="center-block">
+	<header id="header">
+		<div class="logo">
+			<img src="<%= asset_path 'logo.png' %>" >
+		</div>
+	</header>
+	<div id="admin_connect" class="center-block">
+		<H2 class="card-title" style="width:100%; text-align:center;">팀이 생성 되었습니다!!</H2>
+		<br>
+		
+		
+		<div class="card border-dark mb-3" style="width:30%;">
+			<div class="card-header" style="width:100%;">
+				<H4 class="card-title">
+					<%= @team.t_name %>
+				</H4>
+			</div>
+			<div class="card-body" style="width:100%; text-align:center;">
+				<p class="card-text" style="width:100%; font-size: 20px;">
+					과목명 : <%= @team.c_name %><br><br>
+					교수명 : <%= @team.p_name %><br>
+				</p>
+				<br>
+				
+				<%= button_to '확인', admins_path(admin: { user_id: current_user.id, team_id: params[:team_id] }), class:"btn btn-default", 
+									type:"button", style:"width:50%; height:50px; background:#1C1C1C; color:#fff;" %>
+		  	</div>
+		</div>
+	</div>
+	
 
-팀이 생성 되었습니다!!
-<%= button_to '확인', admins_path(admin: { user_id: current_user.id, team_id: params[:team_id] }), class:"btn btn-warning", 
-									type:"submit", style:"width:400px; height:50px; background:#FDD806; border: 1px solid #FDD806; color:#1C1C1C" %>
+</div>
 

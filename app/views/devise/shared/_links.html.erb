@@ -1,13 +1,16 @@
+<div id="devise_link">
+	
+
 <%- if controller_name != 'sessions' %>
   <%= link_to "로그인", new_session_path(resource_name) %><br />
 <% end %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "회원가입", new_registration_path(resource_name) %><br />
-<% end %>
-
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "비밀번호를 잊으셨습니까?", new_password_path(resource_name) %><br />
+  <%= link_to "비밀번호가 생각나지 않나요?", new_password_path(resource_name) %><br /><br /><br />
+<% end %>
+	
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "처음이신가요? 회원가입하기", new_registration_path(resource_name) %><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -23,3 +26,5 @@
     <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %><br />
   <% end %>
 <% end %>
+
+</div>

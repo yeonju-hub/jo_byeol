@@ -11,34 +11,7 @@
   </head>
 
   <body>
-	<div id="wrap_menu">
-		
-		<% if user_signed_in? %>
-			<div class="top_menu">	
-				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
-		 		</div>
-				<div class="link_login">
-					<%= current_user.email %>. |
-					user ID : <%= current_user.id %>
-					<%= link_to "회원정보 수정", edit_user_registration_path, :class => 'navbar-link' %>&nbsp; | &nbsp;
-					<%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
-				</div>
-			</div>		
-		<% else %>
-			<div class="top_menu">
-				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
-		 		</div>
-				<div class="link">
-					<%= link_to "로그인", new_user_session_path, :class => 'navbar-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="btn btn-default" type="button" style="width:100px; background:#B890D3;">
-						<%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link' , style: "text-decoration: none; color:#1C1C1C;" %></button>
-				</div>
-			</div>
-		<% end %>
-			
-	</div>
+	
     <%= yield %>
   </body>
 </html>

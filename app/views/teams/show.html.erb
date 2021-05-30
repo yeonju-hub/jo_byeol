@@ -1,117 +1,134 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 	
 </head>
 
 <body>
 	<div id="wrap">
-		
-		
-		<div class="team_page">
-			
-			<% if user_signed_in? %>
-			<% @@uht = Uht.where(team_id: params[:id]) %>
-				<% if Admin.where(user_id: current_user.id, team_id: params[:id]).exists? %>
-					
-			
-					<div class="category">
-						<div class="team_main">
-							<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
-						</div>
-						<nav class="nav">
-							<ul>
-								<li><%= link_to "게시판", get_post_list_path(params[:id]), method: :post %></li>
-								<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
-								<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
-								<% @admin.each do |admin| %>
-									<% if admin.user_id == current_user.id %>
-									<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
-									<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
-									<% end %>
-								<% end %>
-							</ul>
-						</nav>
-					</div>
-					
-					<div class="contents">
-						<H1>오늘은 <%= @t.to_date %> 입니다.</H1>
-						<br>
-							<% @lately_meeting.each do |meeting| %>
-								<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">
-									<div class="box">
-										<br>
-										<h3>[모임 일정]</h3>
-										<%= meeting.schedule %><br>
-										<%= meeting.start_time.to_date %>
-										<%= meeting.start_time.strftime("%k:%M %p")%><br>
-										<%= meeting.place %><br>
-									</div>
-								</a>
-							<% end %>
-					</div>
-					
-			
-			
-			
-			
-			
-				<% else %>
-			
-					<% if Uht.where(user_id: current_user.id, team_id: @team.id).exists? %>
-					
+		<div id="wrap_team">
+			<header id="header">
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+				</div>
+			</header>
+		</div>
+		<div class="back">
+			<div id="wrap_team" style="margin-top:2%;">
+				<% if user_signed_in? %>
+				<% @@uht = Uht.where(team_id: params[:id]) %>
+					<% if Admin.where(user_id: current_user.id, team_id: params[:id]).exists? == true and Uht.where(user_id: current_user.id, team_id: @team.id).exists? == false %>
+
 						<div class="category">
 							<div class="team_main">
 								<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
 							</div>
 							<nav class="nav">
 								<ul>
-									<li><%= link_to "게시판", get_post_list_path(params[:id]), method: :post %></li>
+									<li><a href="#">공지사항</a></li>
 									<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
 									<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
-									<% @admin.each do |admin| %>
-										<% if admin.user_id == current_user.id %>
-										<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
-										<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+										<% @admin.each do |admin| %>
+											<% if admin.user_id == current_user.id %>
+												<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
+												<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+											<% end %>
 										<% end %>
-									<% end %>
 								</ul>
 							</nav>
 						</div>
-			
-						
-			
+
+
 						<div class="contents">
-						<H1>오늘은 <%= @t.to_date %> 입니다.</H1>
-						<br>
-							<% @lately_meeting.each do |meeting| %>
-								<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">
-									<div class="box">
-										<br>
-										<h3>[모임 일정]</h3>
-										<%= meeting.schedule %><br>
-										<%= meeting.start_time.to_date %>
-										<%= meeting.start_time.strftime("%k:%M %p")%><br>
-										<%= meeting.place %><br>
+							<H1>오늘은 <%= @t.to_date %> 입니다.</H1>
+							<br>
+								<% @lately_meeting.each do |meeting| %>
+									<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">
+										<div class="box">
+											<br>
+											<h3>[모임 일정]</h3>
+											<%= meeting.schedule %><br>
+											<%= meeting.start_time.to_date %>
+											<%= meeting.start_time.strftime("%k:%M %p")%><br>
+											<%= meeting.place %><br>
+										</div>
+									</a>
+								<% end %>
+						</div>
+
+
+
+					<% else %>
+
+						<% if Uht.where(user_id: current_user.id, team_id: @team.id).exists? %>
+							<div class="category">
+								<div class="team_main">
+									<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
+								</div>
+								<nav class="nav">
+									<ul>
+										<li><a href="#">공지사항</a></li>
+										<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
+										<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
+											<% @admin.each do |admin| %>
+												<% if admin.user_id == current_user.id %>
+													<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
+													<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+												<% end %>
+											<% end %>
+									</ul>
+								</nav>
+							</div>
+
+
+
+						<div class="contents">
+							<H1>오늘은 <%= @t.to_date %> 입니다.</H1>
+							<br>
+								
+							
+							
+							<div class="row">
+    							<div class="col-md-6">
+									<div class="card border-dark mb-3" style="max-width: 20rem;">
+										<div class="card-header" style="width:100%;">
+											<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">모임 일정</a>
+										</div>
+										<div class="card-body">
+											<% @lately_meeting.each do |meeting| %>
+											<h4 class="card-title">
+												<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings"><%= meeting.schedule %></a>
+											</h4>
+											<p class="card-text">
+												<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">
+											  	<%= meeting.start_time.to_date %><br>
+												<%= meeting.start_time.strftime("%k:%M %p")%><br>
+												<%= meeting.place %><br>
+												</a>
+											</p>
+											<% end %>
+										</div>
 									</div>
-								</a>
-							<% end %>
-					</div>
-			
-					<% else %> 
-						가입하시겠습니까?
-						<%= button_to "가입하기", uhts_path(uht: {user_id: current_user.id, team_id: @team}) %>
+								</div>
+								<div class="col-md-6">나는 그리드 시스템</div>
+							</div>
+
+						</div>
+
+						<% else %> 
+							가입하시겠습니까?
+							<%= button_to "가입하기", uhts_path(uht: {user_id: current_user.id, team_id: @team}) %>
+						<% end %>
 					<% end %>
+				<% else %>
+					로그인 페이지
 				<% end %>
-			<% else %>
-				로그인 페이지
-			<% end %>
+
+
+			</div>
+
+
 		</div>
-		
-
-
-
-
-
 	</div>
 </body>

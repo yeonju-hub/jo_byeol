@@ -1,24 +1,121 @@
-* {
-    margin: 0 auto;
-    padding: 0;
-    list-style: none;
-	text-decoration: none;
+#devise_link {
+font-size:15px;
+color:#fff;
 }
 
-.sign_up {
-	width:1600px;
+#header {
+	width:100%;
+	height:80px;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+#header .logo {
+	width:160px;
+	height:80px;
+	overflow:hidden;
 	float:left;
-	text-align:center;
+}
+
+
+#header .logo img{
+	margin-top:-25px;
+	float:left;
+}
+
+#header .strong {
+	width:200px;
+	height:40px;
+	font-size:30px;
+	color:#717171;
+	float:left;
+	margin-left:2%;
+	margin-top:0.7%;
+}
+
+.back {
+	min-height: 100%;
+  	min-width: 100%;
+    
+  /* Set up proportionate scaling */
+ 	width: 100%;
+  	height: auto;
+    
+  /* Set up positioning */
+  	position: fixed;
+	background:#F9FAFA;
 }
 
 .log_in {
-	width:1600px;
-	float:left;
-	text-align:center;
+	width:400px;
+	height:500px;
+	float:none; 
+	margin:0 auto;
+	border-radius: 20px;
+	background:#fff;
 }
 
-.user_edit {
-	width:1600px;
+.log_in .box {
+	width:200px;
+	float:none; 
+	margin:0 auto;
+}
+
+.sign_up {
+	width:400px;
+	height:700px;
+	float:none; 
+	margin:0 auto;
+	border-radius: 20px;
+	background:#fff;
+}
+
+.sign_up .password_notice {
+	width:200px;
+	height:40px;
+	background:#F9FAFA;
 	float:left;
-	text-align:center;
+	border-radius: 10px;
+	font-size:13px;
+	color:#FF5457;
+}
+
+.sign_up .password_notice p {
+	padding-top:11px;	
+}
+
+.sign_up .box {
+	width:200px;
+	float:none; 
+	margin:0 auto;
+}
+
+
+.user_edit {
+	width:400px;
+	height:800px;
+	float:none; 
+	margin:0 auto;
+	border-radius: 20px;
+	background:#fff;
+}
+
+.user_edit .box{
+	width:300px;
+	float:none; 
+	margin:0 auto;
+}
+
+.user_edit .password_notice {
+	width:300px;
+	height:100px;
+	background:#F9FAFA;
+	float:left;
+	border-radius: 10px;
+	font-size:13px;
+	color:#FF5457;
+}
+
+.user_edit .password_notice p {
+	padding-top:11px;	
 }

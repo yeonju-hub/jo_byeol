@@ -1,33 +1,51 @@
 <div id="wrap">
 	
-	<div class="log_in">
+	<header id="header">
+		<div class="logo">
+			<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+		</div>
+		<div class="strong">
+			<strong>로그인</strong>
+		</div>
 		
+	</header>
 	
-		<h2>로그인</h2><br />
+	<div class="back">
+		<br><br><br><br><br><br>
+		<div class="log_in center-block">
+			<br>
+			
+			<div class="box center-block">
+				<h2 style="text-align:center;">로그인</h2><br />
+				
+				
+				
+				<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			
+				<div class="field d-grid gap-2">
+					이메일<br>
+					<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+				</div>
+				<br>
+				
 
-		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-		  <div class="field">
-			이메일<br />
-			<%= f.email_field :email, autofocus: true, autocomplete: "email" %><br /><br />
-		  </div>
+				<div class="field d-grid gap-2">
+					비밀번호<br>
+					<%= f.password_field :password, autocomplete: "new-password" %><br>
+				  </div>
+				
+				<div class="d-grid gap-2">
+				 <button class="btn btn-lg btn-default" type="submit" style="background:#1C1C1C; color:#F9FAFA;">로그인</button>
+				</div>
+				<% end %>
 
-		  <div class="field">
-			비밀번호<br />
-			<%= f.password_field :password, autocomplete: "current-password" %><br /><br />
-		  </div>
-
-		  <% if devise_mapping.rememberable? %>
-			<div class="field">
-			  <%= f.check_box :remember_me %>
-			  자동 로그인<br /><br />
+				<br><br>
+				 
+				<%= render "devise/shared/links" %>
+				
 			</div>
-		  <% end %>
-
-		  <div class="actions">
-			<%= f.submit "로그인" %>
-		  </div>
-		<% end %>
-
-		<%= render "devise/shared/links" %>
+			
+			<br><br><br>
+		</div>
 	</div>
 </div>

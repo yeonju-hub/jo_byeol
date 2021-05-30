@@ -5,69 +5,127 @@
 </head>
 
 <body>
-	<div id="wrap_main">
-	<% if user_signed_in? %>
+	
+	<div id="wrap_menu">
 		
-			<div class="user_profile">	
-				<H5>프로필</H5>
-				<%= current_user.name %><br />
-				<%= current_user.email %>
-				<%= link_to "프로필 설정", edit_user_registration_path, :class => 'navbar-link', style:"float:right;" %>
-			</div>	
+		<% if user_signed_in? %>
+			<div class="top_menu">	
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+		 		</div>
+				<div class="link_login">
+					<%= current_user.email %>. |
+					user ID : <%= current_user.id %>
+					<%= link_to "회원정보 수정", edit_user_registration_path, :class => 'navbar-link' %>&nbsp; | &nbsp;
+					<%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+				</div>
+			</div>		
+		<% else %>
+			<div class="top_menu">
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+		 		</div>
+				<div class="link">
+					<%= link_to "로그인", new_user_session_path, :class => 'navbar-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-default" type="button" style="width:100px; background:#B890D3;">
+						<%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link' , style: "text-decoration: none; color:#1C1C1C;" %></button>
+				</div>
+			</div>
+		<% end %>
+			
+	</div>
+	
+	<% if user_signed_in? %>
+	<div id="wrap_main">	
+		<h4 class="card-title">프로필</h4>
+		<div class="card">
+			<div class="card-body" style="width:100%;">
+				<h4 class="card-subtitle mb-2 text-muted"><%= current_user.name %></h4>
+				<p class="card-text">
+					학번 : <%= current_user.number %><br>
+					이메일 : <%= current_user.email %>
+				</p>
+				<p style="font-size:15px;float:right;">
+					<img src="<%= asset_path 'pencil.png' %>" style="width:17px; height:17px;" >
+					<%= link_to "프로필 수정", edit_user_registration_path %>
+				</p>
+			</div>
+		</div>
+		
+		
+		
+	
 		
 			<div class="team_list">
-				<H5>
-					팀 리스트
-				</H5>
-				
+				<h4 class="card-title">팀 리스트</h4><br>
 
 				
 				<% @admins.each do |admins| %>
 					<% if admins.user_id == current_user.id %>	
 						<% if Uht.where(user_id: current_user.id, team_id: admins.team_id).exists? == false %>
 				
-				<div class="box">
-					<div class="contents">
-									<%= Team.find(admins.team_id).t_name %><br><br>
-									<img src="<%= asset_path 'owner.png' %>" > <%= User.find(current_user.id).email %><br>
-					</div>		
+				
+				
+							<div class="card">
+									<div class="card-body" style="width:100%;">
+										<h4 class="card-title"><%= Team.find(admins.team_id).t_name %></h4>
+										<h6 class="card-subtitle mb-2 text-muted"><img src="<%= asset_path 'owner.png' %>" ><%= User.find(current_user.id).email %></h6>
+										<p class="card-text">
+											과목명 : <%= Team.find(admins.team_id).c_name %> <br>
+											교수명 : <%= Team.find(admins.team_id).p_name %>
+										</p>
 
-					<div class="buttons">
-						<button class="btn btn-default" type="button" style="width:40%; background:#ffffff; float:left; border: 1px solid #E6E6E6;">
-							<%= link_to '팀 관리', edit_team_path(admins.team_id), style: "text-decoration: none; color:#1C1C1C;" %></button>
-						<%= button_to '팀으로 가기', uhts_path(uht: { user_id: current_user.id, team_id: admins.team_id }), class:"btn btn-default", 
-											type:"button", style:"width:50%; background:#B890D3; color:#1C1C1C; float:right;" %><br><br>
-					</div>
-				</div>
+										<div class="buttons">
+											<button class="btn btn-default" type="button" style="width:40%; background:#ffffff; float:left; border: 1px solid #E6E6E6;">
+												<%= link_to '팀 관리', edit_team_path(admins.team_id), style: "text-decoration: none; color:#1C1C1C;" %></button>
+											<%= button_to '팀으로 가기', uhts_path(uht: { user_id: current_user.id, team_id: admins.team_id }), class:"btn btn-default", 
+														type:"button", style:"width:50%; background:#B890D3; color:#1C1C1C; float:right;" %>
+										</div>
+									</div>
+							</div>
+							<br><br>
+				
+				
+				
 						<% end %>	
 					<% end %>
 				<% end %>
 
 				
 				
+				
+				
+				
 				<% @uht = Uht.where(user_id: current_user.id) %>
 				<% @uht.each do |uht| %>
 				
-				<div class="box">
-					<div class="contents">	
-						<%= Team.find(uht.team_id).t_name %><br><br>
-						<% @admin = Admin.where(team_id: uht.team_id) %>
-						<% @admin.each do |admin| %>
-						<img src="<%= asset_path 'owner.png' %>" ><%= User.find(admin.user_id).email %><br>
-					</div>
-					
-					<div class="buttons">
-							<% if admin.user_id == current_user.id %>
-								<button class="btn btn-default" type="button" style="width:40%; background:#ffffff; float:left; border: 1px solid #E6E6E6;">
-									<%= link_to '팀 관리', edit_team_path(uht.team_id), style: "text-decoration: none; color:#1C1C1C;"%></button>
+					<div class="card">
+						<div class="card-body" style="width:100%;">
+							<h4 class="card-title"><%= Team.find(uht.team_id).t_name %></h4>
+							<% @admin = Admin.where(team_id: uht.team_id) %>
+							<% @admin.each do |admin| %>
+							<h6 class="card-subtitle mb-2 text-muted"><img src="<%= asset_path 'owner.png' %>" ><%= User.find(admin.user_id).email %></h6>
+							<p class="card-text">
+								과목명 : <%= Team.find(uht.team_id).c_name %> <br>
+								교수명 : <%= Team.find(uht.team_id).p_name %>
+							</p>
+
+							<div class="buttons">
+								<% if admin.user_id == current_user.id %>
+									<button class="btn btn-default" type="button" style="width:40%; background:#ffffff; float:left; border: 1px solid #E6E6E6;">
+										<%= link_to '팀 관리', edit_team_path(uht.team_id), style: "text-decoration: none; color:#1C1C1C;"%></button>
+								<% end %>
 							<% end %>
-						<% end %>
-					
-						<button class="btn btn-default" type="button" style="width:50%; background:#B890D3; float:right;">
-							<%= link_to '팀으로 가기', team_path(uht.team_id), style: "text-decoration: none; color:#1C1C1C;" %></button><br><br>
+
+							<button class="btn btn-default" type="button" style="width:50%; background:#B890D3; float:right;">
+								<%= link_to '팀으로 가기', team_path(uht.team_id), style: "text-decoration: none; color:#1C1C1C;" %>
+							</button>
+
+							</div>
+						</div>
 					</div>
-				</div>
-						
+					<br><br>
+					
 				<% end %>
 
 				
@@ -78,9 +136,11 @@
 			<a href="<%= new_team_path %>" >+ 팀 생성하기</a>
 		</div>
 		
-		
+	</div>	
 	<% else %>	
-				<div class="banner_bono">
+		<div id="wrap_main" class="center-block">
+		
+				<div class="banner_bono center-block">
 					<div class="bono_img">
 						<img src="<%= asset_path 'bono1.jpg' %>" >
 					</div>
@@ -90,44 +150,44 @@
 					<button class="btn btn-default" type="button" style="width:120px; background:#B890D3; margin-top:20px;">
 						<%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link', style: "text-decoration: none; color:#1C1C1C;" %></button>
 					<br>
+				</div>
 					
-					
-					<div class="img1">
-						<img src="<%= asset_path 'img1.png' %>" >
+			
+				<div class="img1 center-block">
+					<img src="<%= asset_path 'img1.png' %>" >
 						
-						<div class="dora">
-							<img src="<%= asset_path 'dora.jpg' %>" >
-						</div>
-						
-						
-						
-						
+					<div class="dora">
+						<img src="<%= asset_path 'dora.jpg' %>" >
 					</div>
-					<div class="img1_box">
+				</div>
+					
+				<div class="img1_box center-block">
 							
-					</div>
+				</div>
 					
+			
 					
-					<div class="img2">
-						<img src="<%= asset_path 'img2.png' %>" >
+			
+				<div class="img2 center-block">
+					<img src="<%= asset_path 'img2.png' %>" >
 						
-						<div class="keroro">
-							<img src="<%= asset_path 'keroro1.jpg' %>" >
-						</div>
-						
+					<div class="keroro">
+						<img src="<%= asset_path 'keroro1.jpg' %>" >
 					</div>
+						
+				</div>
 					
-					<div class="img2_box">
+				<div class="img2_box center-block">
 							
-					</div>
+				</div>
 					
 					<img src="<%= asset_path 'sic2.jpg' %>" >
 					
-				</div>
-			
+				
+	</div>		
 		<% end %>
 			
 		
-	</div>	
+		
 	
 </body>

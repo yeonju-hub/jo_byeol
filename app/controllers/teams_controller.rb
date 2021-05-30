@@ -63,6 +63,7 @@ class TeamsController < ApplicationController
   end
 	
 	def admin_connect
+		@team = Team.find(params[:team_id])
 	end
 
   private

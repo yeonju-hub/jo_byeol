@@ -20,4 +20,10 @@
   <%= @post.contents %>
 </p>
 
+<div>
+  <%= link_to "좋아요 #{@post.get_upvotes.size}", like_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px;" %>
+  <%= link_to "싫어요 #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px;" %>
+</div>
+
+
 <%= render 'comments/form', comment: @comment %>

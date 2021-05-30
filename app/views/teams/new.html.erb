@@ -1,9 +1,25 @@
 <div id="wrap">
-	<div class="team_new">
-		<h1>팀 생성하기</h1>
+	<header id="header">
+		<div class="logo">
+			<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+		</div>
+		<div class="strong">
+			<strong>팀 생성하기</strong>
+		</div>
+	</header>
+	
+	<div class="back">
 		
-		<br><br>
-		<%= render 'form', team: @team %>
+		<br><br><br><br><br>
+		<div class="team_new center-block">
+			<div class="box center-block">
+				<br>
+				<h2 style="text-align:center;">팀 생성하기</h2>
+
+				<br>
+				<%= render 'form', team: @team %>
+			</div>
+		</div>
 
 	</div>
 </div>

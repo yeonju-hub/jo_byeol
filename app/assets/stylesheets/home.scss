@@ -15,8 +15,8 @@
 #wrap_main {
 	width:90%;
 	padding:20px;
-	margin-left:5%;
-	float:left;
+	float:none; 
+	margin:0 auto;
 }
 
 
@@ -48,15 +48,13 @@
 	float:left;
 }
 
-.team_list .box .contents {
-	width:80%;
-	height:100%;
-	float: left;
+.card .card-body .card-subtitle img {
+	width:56px;
+	height:24.5px;
 }
 
-.team_list .box .buttons {
+.card .buttons {
 	width: 17%;
-	margin-top:30px;
 	float: right;
 }
 
@@ -80,9 +78,9 @@
 
 .banner_bono {
 	width: 100%;
-	float:left;
 	text-align: center;
-	
+	float:none; 
+	margin:0 auto;
 }
 
 .banner_bono .bono_img {
@@ -103,13 +101,14 @@
 }
 
 
-.banner_bono .img1 {
-	margin-left:20%;
+.img1 {
+	width:730px;
 	height:230px;
-	float:left;
+	float:none; 
+	margin:0 auto;
 }
 
-.banner_bono .img1 img {
+.img1 img {
 	width:500px;
 	height:120px;
 	margin-top:110px;
@@ -117,15 +116,14 @@
 }
 
 
-.banner_bono .img1 .dora {
+.img1 .dora {
 	width:230px;
 	height:230px;
 	float:left;
 	overflow:hidden;
-	margin-left:100px;
 }
 
-.banner_bono .img1 .dora img{
+.img1 .dora img{
 	width:300px;
 	height:300px;
 	float:left;
@@ -136,21 +134,21 @@
 .img1_box {
 	width:1000px;
 	height:500px;
-	float:left;
 	background:#abc;
-	margin-left:200px;
+	float:none; 
+	margin:0 auto;
 }
 
 
 
-.banner_bono .img2 {
-	width:1400px;
+.img2 {
+	width:780px;
 	height:230px;
-	padding-left:300px;
-	float:left;
+	float:none; 
+	margin:0 auto;
 }
 
-.banner_bono .img2 img {
+.img2 img {
 	width:600px;
 	height:120px;
 	margin-top:110px;
@@ -158,14 +156,15 @@
 }
 
 
-.banner_bono .img2 .keroro {
+.img2 .keroro {
 	width:230px;
 	height:230px;
 	float:left;
 	overflow:hidden;
+	margin-left:-50px;
 }
 
-.banner_bono .img2 .keroro img{
+.img2 .keroro img{
 	width:300px;
 	height:300px;
 	float:left;
@@ -176,7 +175,7 @@
 .img2_box {
 	width:1000px;
 	height:500px;
-	float:left;
+	float:none; 
+	margin:0 auto;
 	background:#abc;
-	margin-left:200px;
 }

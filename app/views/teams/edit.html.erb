@@ -1,27 +1,33 @@
 <div id="wrap">
-	<div class="team_edit">
-		<div class="category">
-						<div class="team_main">
-							<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
-						</div>
-						<nav class="nav">
-							<ul>
-								<li><a href="#">공지사항</a></li>
-								<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
-								<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
-								<% @admin.each do |admin| %>
-									<% if admin.user_id == current_user.id %>
-									<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
-									<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
-									<% end %>
-								<% end %>
-							</ul>
-						</nav>
-					</div>
-		<h1>팀 정보 수정</h1><br>
+	<header id="header">
+		<div class="logo">
+			<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+		</div>
+		<div class="strong">
+			<strong>팀 수정하기</strong>
+		</div>
+	</header>
+	
+	<div class="back">
+		
+		<br><br><br><br><br>
+		<div class="team_edit center-block">
+			<div class="box center-block">
+				<br>
+				<h2 style="text-align:center;">팀 수정하기</h2>
 
-		<%= render 'form', team: @team %>
+				<br>
+				<%= render 'form', team: @team %>
+			</div>
+		</div>
 
 	</div>
 	
+	
+	
+
+		<%= render 'form', team: @team %>
+
+	
+		
 </div>

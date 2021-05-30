@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="d-grid gap-2">
     팀명&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= form.text_field :t_name %><br><br>
+    <%= form.text_field :t_name %><br>
   </div>
 
-  <div class="field">
+  <div class="d-grid gap-2">
     과목명&nbsp;
-    <%= form.text_field :c_name %><br><br>
+    <%= form.text_field :c_name %><br>
   </div>
 
-  <div class="field">
+  <div class="d-grid gap-2">
     교수명&nbsp;
-    <%= form.text_field :p_name %><br><br>
+    <%= form.text_field :p_name %><br>
   </div>
 
-  <div class="actions">
-    <input type="submit" value="확인" />
-  </div>
+	<div class="d-grid gap-2">
+		<button class="btn btn-lg btn-default" type="submit" style="background:#1C1C1C; color:#F9FAFA;">확인</button>
+	</div>
 <% end %>
