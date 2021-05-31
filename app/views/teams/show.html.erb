@@ -26,7 +26,7 @@
 							</div>
 							<nav class="nav">
 								<ul>
-									<li><a href="#">공지사항</a></li>
+									<li><%= link_to "게시판", post_list_path(params[:id]) %></li>
 									<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
 									<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
 										<% @admin.each do |admin| %>
@@ -68,12 +68,12 @@
 								</div>
 								<nav class="nav">
 									<ul>
-										<li><a href="#">공지사항</a></li>
-										<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
-										<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
+										<li><%= link_to "게시판", post_list_path(params[:id]) %></li>
+										<li><%= link_to "조별활동과정", activity_list_path(params[:id])%></li>
+										<li><%= link_to "일정관리", write_meeting_path(params[:id])%></li>
 											<% @admin.each do |admin| %>
 												<% if admin.user_id == current_user.id %>
-													<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
+													<li><%= link_to "멤버관리", members_path(params[:id]) %></li>
 													<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
 												<% end %>
 											<% end %>

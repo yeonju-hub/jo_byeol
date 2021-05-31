@@ -1,29 +1,77 @@
-<p id="notice"><%= notice %></p>
+<DOCTYPE html>
+<html lang="ko">
+<head>
+	
+</head>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
-
-<p>
-  <strong>Team:</strong>
-  <%= @post.team %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Contents:</strong>
-  <%= @post.contents %>
-</p>
-
-<div>
-  <%= link_to "좋아요 #{@post.get_upvotes.size}", like_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px;" %>
-  <%= link_to "싫어요 #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px;" %>
-</div>
-
-
-<%= render 'comments/form', comment: @comment %>
+<body>
+	<div id="wrap">
+		<div id="wrap_team">
+			<header id="header">
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+				</div>
+			</header>
+		</div>
+		<div class="back">
+			<div id="wrap_team" style="margin-top:2%;">
+				<div class="category">
+					<div class="team_main">
+						<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= @team %>"><%= Team.find(@team).t_name %></a>
+					</div>
+					<nav class="nav">
+						<ul>
+							<li><%= link_to "게시판", post_list_path(@team) %></li>
+							<li><%= link_to "조별활동과정", activity_list_path(@team) %></li>
+							<li><%= link_to "일정관리", write_meeting_path(@team) %></li>
+								<% @admin.each do |admin| %>
+									<% if admin.user_id == current_user.id %>
+										<li><%= link_to "멤버관리", members_path(@team) %></li>
+										<li><%= link_to "팀관리", edit_team_path(@team) %></li>
+									<% end %>
+								<% end %>
+						</ul>
+					</nav>
+				</div>
+				
+				<div class="post_contents">
+					<div class="post">
+						
+						<br>
+						<div class="card bg-light mb-3" style="width: 90%;">
+							<div class="card-header" style="width:100%;">
+							  <h3>
+								  <%= @post.title %>
+							  </h3>
+							</div>
+						  <div class="card-body" style="width:100%;">
+							<p class="card-text" style="float:right"><%= @post.user.name %></p><br><br>
+							<h5 class="card-title"><%= @post.contents %></h5><br><br><br><br>
+							<div style="text-align:center;">
+							  <%= link_to "좋아요 #{@post.get_upvotes.size}", like_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px; background:#fff;" %>
+							  <%= link_to "싫어요 #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px;background:#fff;" %>
+							</div>
+						  </div>
+						</div>
+						
+						
+						
+						<div class="comments_contents">
+							<div class="comments">
+								
+								<% @comments.each do |comments| %>
+									<p><%= User.find(comments.user_id).name %></p>
+									<%= comments.comment %><hr>
+								<% end %>
+								<%= render 'comments/form', comment: @comment %>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+	
+	

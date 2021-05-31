@@ -1,22 +1,20 @@
+
 <%= form_with(model: comment, local: true) do |form| %>
 
 
   <div class="field">
-    <%= form.label :post_id %>
-    <%= form.text_field :post_id, value: params[:id] %>
+    <%= form.hidden_field :post_id, value: params[:id] %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, value: current_user.id%>
+    <%= form.hidden_field :user_id, value: current_user.id%>
   </div>
 
-  <div class="field">
-    <%= form.label :comment %>
+  <div class="field d-grid gap-2">
     <%= form.text_area :comment %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <button class="btn btn-lg btn-default" type="submit" style="font-size:12px; background:#1C1C1C; color:#F9FAFA;">댓글달기</button>
   </div>
 <% end %>

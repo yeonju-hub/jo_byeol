@@ -10,6 +10,8 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1 or /activities/1.json
   def show
+	  @team = @activity.team_id
+	  @admin = Admin.where(team_id: @team)
   end
 
   # GET /activities/new
@@ -28,10 +30,12 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
 	@team = @activity.team_id
+	params[:team_id] = @team
+	@admin = Admin.where(team_id: @team)
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to activity_list_path(@team), notice: "작성이 완료 되었습니다." }
+        format.html { redirect_to get_activity_list_path(params[:team_id], @admin), notice: "작성이 완료 되었습니다." }
         format.json { render :show, status: :created, location: @activity }
       else
         format.html { render :new, status: :unprocessable_entity }

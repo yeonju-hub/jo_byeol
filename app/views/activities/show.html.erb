@@ -1,3 +1,87 @@
+<DOCTYPE html>
+<html lang="ko">
+<head>
+	
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="wrap_team">
+			<header id="header">
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+				</div>
+			</header>
+		</div>
+		<div class="back">
+			<div id="wrap_team" style="margin-top:2%;">
+				<div class="category">
+					<div class="team_main">
+						<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= @team %>"><%= Team.find(@team).t_name %></a>
+					</div>
+					<nav class="nav">
+						<ul>
+							<li><%= link_to "게시판", post_list_path(@team) %></li>
+							<li><%= link_to "조별활동과정", activity_list_path(@team) %></li>
+							<li><%= link_to "일정관리", write_meeting_path(@team) %></li>
+								<% @admin.each do |admin| %>
+									<% if admin.user_id == current_user.id %>
+										<li><%= link_to "멤버관리", members_path(@team) %></li>
+										<li><%= link_to "팀관리", edit_team_path(@team) %></li>
+									<% end %>
+								<% end %>
+						</ul>
+					</nav>
+				</div>
+				
+				<div class="post_contents">
+					<div class="post">
+						
+						<br>
+						<div class="card bg-light mb-3" style="width: 90%;">
+							<div class="card-header" style="width:100%;">
+							  <h3>
+								  <%= @activity.title %>
+							  </h3>
+							</div>
+						  <div class="card-body" style="width:100%;">
+							<p class="card-text" style="float:right"><%= @activity.user.name %></p><br>
+							<h5 class="card-title">
+								<h5><strong>자료조사</strong></h5><br>
+								<%= @activity.research %><br><hr>
+								
+								<h5><strong>PPT</strong></h5><br>
+							 	<%= @activity.ppt %><br><hr>
+								
+								<h5><strong>대본</strong></h5><br>
+								<%= @activity.script %><br><hr>
+								<%= link_to "첨부자료 다운로드", @activity.attachment_url, download: "Activity_#{@activity.id}_attachment" %><br>
+							 </h5>
+						  </div>
+						</div>
+						
+						
+						
+						<% if @activity.user_id == current_user.id %>
+							<div class="edit_delete">
+								<%= link_to '수정', edit_activity_path(@activity) %>
+								<%= link_to '삭제', @activity, method: :delete, data: { confirm: '정말 삭제하시겠습니까??' } %>
+							</div>
+						<% end %>
+						
+						
+						
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+	
+	
+
+
 <p id="notice"><%= notice %></p>
 
 <p>

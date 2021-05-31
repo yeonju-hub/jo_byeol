@@ -1,50 +1,54 @@
-<%= form_with(model: activity, local: true) do |form| %>
-  <% if activity.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+<div class="activity_new center-block">
 
-      <ul>
-      <% activity.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: activity, local: true) do |form| %>
 
   <div class="field">
-    <%= form.hidden_field :team_id, value: @team %>
+    <%= form.hidden_field :team_id, value: params[:team_id] %>
   </div>
 
   <div class="field">
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
+  <div class="field d-grid gap-2">
+    제목<br>
     <%= form.text_field :title %>
   </div>
+	
+	<br>
 
-  <div class="field">
-    <%= form.label :research %>
+  <div class="field d-grid gap-2">
+    자료조사<br>
     <%= form.text_area :research %>
   </div>
 
-  <div class="field">
-    <%= form.label :ppt %>
+	<br>
+	
+  <div class="field d-grid gap-2">
+    PPT
     <%= form.text_area :ppt %>
   </div>
 
-  <div class="field">
-    <%= form.label :script %>
+	<br>
+	
+  <div class="field d-grid gap-2">
+    대본
     <%= form.text_area :script %>
   </div>
 
-  <div class="field">
-    <%= form.label :attachment %>
-    <%= form.file_field :attachment %>
+	<br>
+	
+  <div class="field d-grid gap-2">
+    첨부파일 
+    <%= form.file_field :attachment %>	
+	※ zip으로 압축하여 첨부
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+	<br>
+	
+  <div class="actions d-grid gap-2">
+		<button class="btn btn-lg btn-default" type="submit" style="background:#1C1C1C; color:#F9FAFA;">확인</button>
+	</div>
 <% end %>
+	
+</div>

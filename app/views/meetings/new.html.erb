@@ -1,3 +1,90 @@
+<DOCTYPE html>
+<html lang="ko">
+<head>
+	
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="wrap_team">
+			<header id="header">
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+				</div>
+			</header>
+		</div>
+		<div class="back">
+			<div id="wrap_team" style="margin-top:2%;">
+				<div class="category">
+					<div class="team_main">
+						<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>"><%= Team.find(params[:team_id]).t_name %></a>
+					</div>
+					<nav class="nav">
+						<ul>
+							<li><%= link_to "게시판", post_list_path(params[:team_id]) %></li>
+							<li><%= link_to "조별활동과정", activity_list_path(params[:team_id]), method: :post %></li>
+							<li><%= link_to "일정관리", write_meeting_path(params[:team_id]), method: :post %></li>
+								<% @admin.each do |admin| %>
+									<% if admin.user_id == current_user.id %>
+										<li><%= link_to "멤버관리", members_path(params[:team_id]), method: :post %></li>
+										<li><%= link_to "팀관리", edit_team_path(params[:team_id]) %></li>
+									<% end %>
+								<% end %>
+						</ul>
+					</nav>
+				</div>
+				
+				<div class="contents">
+					<h3>조별활동과정</h3>
+					<div class="activities">
+						
+						<div class="calendar">
+			
+			<%= month_calendar events: @meetings do |date, meetings| %>
+			  <%= date %>
+
+			  <% meetings.each do |meeting| %>
+				<div>
+					<%= meeting.schedule %><br />
+					<%= meeting.place %><br />
+					<%= meeting.start_time.strftime("%k:%M %p")   %>
+				</div>
+			  <% end %>
+			<% end %>
+			
+			<h1>새 일정</h1>
+
+			<%= render 'form', meeting: @meeting %>
+			
+		</div>
+		
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>

@@ -33,8 +33,23 @@
 }
 
 .activity_new {
-	width:1350px;
-	text-align:center;
-	padding:20px;
-	float:left;
+	width:80%;
+	float:none; 
+	margin:0 auto;
+}
+
+.ac_contents {
+	width: 75%;
+    height: 83vh;
+	padding: 20px;
+	margin-left:50px;
+    float: left;
+	background:#fff;
+	
+}
+
+.edit_delete {
+	width:100px;
+	float:right;
+	margin-right:22px;
 }

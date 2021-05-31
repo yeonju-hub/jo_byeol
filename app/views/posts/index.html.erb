@@ -1,36 +1,85 @@
+<DOCTYPE html>
+<html lang="ko">
+<head>
+	
+</head>
 
-<p id="notice"><%= notice %></p>
+<body>
+	<div id="wrap">
+		<div id="wrap_team">
+			<header id="header">
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+				</div>
+			</header>
+		</div>
+		<div class="back">
+			<div id="wrap_team" style="margin-top:2%;">
+				<div class="category">
+					<div class="team_main">
+						<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>"><%= Team.find(params[:team_id]).t_name %></a>
+					</div>
+					<nav class="nav">
+						<ul>
+							<li><%= link_to "게시판", post_list_path(params[:team_id]) %></li>
+							<li><%= link_to "조별활동과정", activity_list_path(params[:team_id]) %></li>
+							<li><%= link_to "일정관리", write_meeting_path(params[:team_id]) %></li>
+								<% @admin.each do |admin| %>
+									<% if admin.user_id == current_user.id %>
+										<li><%= link_to "멤버관리", members_path(params[:team_id]) %></li>
+										<li><%= link_to "팀관리", edit_team_path(params[:team_id]) %></li>
+									<% end %>
+								<% end %>
+						</ul>
+					</nav>
+				</div>
+				
+				<div class="contents">
+					<h3>게시판</h3>
+					<div class="posts">
+						<button class="btn btn-default" type="button" style="width:100px; background:#B890D3; float:right;">
+							<%= link_to "작성하기", write_post_path(@team), method: :post, style: "text-decoration: none; color:#1C1C1C;" %></button>
 
-<h1>Posts</h1>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>좋아요</th>
+									<th>싫어요</th>
+									<th colspan="3"></th>
+								</tr>
+							</thead>
 
-<button class="btn btn-default" type="button" style="width:100px; background:#B890D3; float:right;">
-						<%= link_to "작성하기", write_post_path(@team), method: :post, style: "text-decoration: none; color:#1C1C1C;" %></button>
+							<tbody>
+								<% @post.each do |post| %>
+								<tr>
+									<td><%= post.title %></td>
+									<td><%= User.find(post.user_id).name %></td>
+									<td><%= post.get_upvotes.size %></td>
+									<td><%= post.get_downvotes.size %></td>
+									<td><%= link_to '보기', post %></td>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Team</th>
-      <th>Title</th>
-      <th>Contents</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+	</html>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user %></td>
-        <td><%= post.team %></td>
-        <td><%= post.title %></td>
-        <td><%= post.contents %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-<%= pagy_bootstrap_nav(@pagy).html_safe %>
+
+
+
+
+
+
+
+
+

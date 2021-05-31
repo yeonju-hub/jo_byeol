@@ -5,11 +5,16 @@ class PostsController < ApplicationController
   def index
     @team = params[:team_id]
 	@pagy, @posts = pagy(Post.where(team_id: @team).all, items: 10)
-	  
+	@admin = Admin.where(team_id: @team)  
+	@post = Post.where(team_id: params[:team_id])
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+	  @team = @post.team_id
+	  @admin = Admin.where(team_id: @team)
+	  @comments = Comment.where(post_id: @post)
+	  @comment = Comment.new
   end
 
   # GET /posts/new
