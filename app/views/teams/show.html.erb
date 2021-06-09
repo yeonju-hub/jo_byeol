@@ -2,95 +2,107 @@
 <html lang="ko">
 <head>
 
-	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-	<div id="wrap">
-		<div id="wrap_team">
-			<header id="header">
-				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+	<!-- 로그인 했을 때  -->
+	<% if user_signed_in? %>
+		<!-- admin 에만 있고 uht에 없을 때  -->
+		<% if Admin.where(user_id: current_user.id, team_id: params[:id]).exists? == true and Uht.where(user_id: current_user.id, team_id: @team.id).exists? == false %>
+			<div id="wrap">
+				<div id="wrap_team">
+					<header id="header">
+						<div class="logo">
+							<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
+						</div>
+						<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+							<div class="user">
+								<p style="margin-top:15px; font-size:17px;">
+									<%= current_user.name %>
+								</p>
+							</div>
+						</a>
+					</header>
 				</div>
-			</header>
-		</div>
-		<div class="back">
-			<div id="wrap_team" style="margin-top:2%;">
-				<% if user_signed_in? %>
-				<% @@uht = Uht.where(team_id: params[:id]) %>
-					<% if Admin.where(user_id: current_user.id, team_id: params[:id]).exists? == true and Uht.where(user_id: current_user.id, team_id: @team.id).exists? == false %>
-
+		
+		
+				<div class="back">
+					<div id="wrap_team" style="margin-top:2%;">
 						<div class="category">
 							<div class="team_main">
-								<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
+									<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
 							</div>
 							<nav class="nav">
 								<ul>
 									<li><%= link_to "게시판", post_list_path(params[:id]) %></li>
-									<li><%= link_to "조별활동과정", activity_list_path(params[:id]), method: :post %></li>
-									<li><%= link_to "일정관리", write_meeting_path(params[:id]), method: :post %></li>
-										<% @admin.each do |admin| %>
-											<% if admin.user_id == current_user.id %>
-												<li><%= link_to "멤버관리", members_path(params[:id]), method: :post %></li>
-												<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
-											<% end %>
+									<li><%= link_to "조별활동과정", activity_list_path(params[:id])%></li>
+									<li><%= link_to "일정관리", write_meeting_path(params[:id])%></li>
+									<% @admin.each do |admin| %>
+										<% if admin.user_id == current_user.id %>
+											<li><%= link_to "멤버관리", members_path(params[:id]) %></li>
+											<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
 										<% end %>
+									<% end %>
+
 								</ul>
 							</nav>
-						</div>
-
-
-						<div class="contents">
-							<H1>오늘은 <%= @t.to_date %> 입니다.</H1>
-							<br>
-								<% @lately_meeting.each do |meeting| %>
-									<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">
-										<div class="box">
-											<br>
-											<h3>[모임 일정]</h3>
-											<%= meeting.schedule %><br>
-											<%= meeting.start_time.to_date %>
-											<%= meeting.start_time.strftime("%k:%M %p")%><br>
-											<%= meeting.place %><br>
-										</div>
-									</a>
-								<% end %>
-						</div>
-
-
-
-					<% else %>
-
-						<% if Uht.where(user_id: current_user.id, team_id: @team.id).exists? %>
-							<div class="category">
-								<div class="team_main">
-									<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
-								</div>
+							<div style="height:10%; float:right;">
+								<hr>
 								<nav class="nav">
-									<ul>
-										<li><%= link_to "게시판", post_list_path(params[:id]) %></li>
-										<li><%= link_to "조별활동과정", activity_list_path(params[:id])%></li>
-										<li><%= link_to "일정관리", write_meeting_path(params[:id])%></li>
-											<% @admin.each do |admin| %>
-												<% if admin.user_id == current_user.id %>
-													<li><%= link_to "멤버관리", members_path(params[:id]) %></li>
-													<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
-												<% end %>
-											<% end %>
-									</ul>
+									<ul style="margin-left:-10px; font-size:15px;"><%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></ul>
 								</nav>
 							</div>
+						</div>
 
+						<div class="contents" style="width:70%; background:#F2F2F2; text-align:left;">
 
-
-						<div class="contents">
-							<H1>오늘은 <%= @t.to_date %> 입니다.</H1>
-							<br>
-								
-							
-							
 							<div class="row">
-    							<div class="col-md-6">
+								<div class="col-md-6" style="height:221px; background:#fff; padding-left:30px; border-radius: 10px;">
+									<br>
+									<h3><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;우리팀</h3><br>
+									<h4>
+										팀명
+										<small class="text-muted"><%= @team.t_name %></small>
+									</h4>
+									<h4>
+										과목명
+										<small class="text-muted"><%= @team.c_name %></small>
+									</h4>
+									<h4>
+										교수명
+										<small class="text-muted"><%= @team.p_name %></small>
+									</h4><br>
+								</div>
+
+								<div class="col-md-1" >
+								</div>
+
+								<div class="col-md-5" style="height:221px; background:#fff; padding-left:30px; border-radius: 10px;">
+									<br>
+									<h3><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;참여자</h3><br>
+									<% if Uht.where(user_id: @admin, team_id: params[:id]).exists? %>
+										<% @member.each do |member| %>
+											<%= User.find(member.user_id).number %>&nbsp;&nbsp;
+											<%= User.find(member.user_id).name %><br>
+										<% end %>
+									<% else %>
+										<% @admin.each do |admin| %>
+											<%= User.find(admin.user_id).number %>&nbsp;&nbsp;
+											<%= User.find(admin.user_id).name %><br>
+										<% end %>
+										<% @member.each do |member| %>
+											<%= User.find(member.user_id).number %>&nbsp;&nbsp;
+											<%= User.find(member.user_id).name %><br>
+										<% end %>
+									<% end %>
+								</div>
+							</div><br>
+
+							<div class="row" style="height:271px; background:#fff; padding-left:30px; border-radius: 10px;">
+								<div class="col-md-12" ><br>
+									<H3><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;&nbsp;오늘은 <%= @t.to_date %></H3>
+									<br>
 									<div class="card border-dark mb-3" style="max-width: 20rem;">
 										<div class="card-header" style="width:100%;">
 											<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">모임 일정</a>
@@ -102,33 +114,383 @@
 											</h4>
 											<p class="card-text">
 												<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">
-											  	<%= meeting.start_time.to_date %><br>
-												<%= meeting.start_time.strftime("%k:%M %p")%><br>
-												<%= meeting.place %><br>
+													<%= meeting.start_time.to_date %><br>
+													<%= meeting.start_time.strftime("%k:%M %p")%><br>
+													<%= meeting.place %><br>
 												</a>
 											</p>
 											<% end %>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">나는 그리드 시스템</div>
+							</div>
+							<br>
+
+							<div class="row">
+								<div class="col-md-6" style="height:267px; background:#fff; padding-left:30px; border-radius: 10px;">
+									<br>
+									<h3><i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;&nbsp;게시판</h3>
+									<br>
+									<table class="col-md-12">
+										<thead>
+											<tr>
+												<th>제목</th>
+												<th>작성자</th>
+												<th colspan="3"></th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<% @post.each do |post| %>
+												<tr>
+													<td><%= post.title %></td>
+													<td><%= post.user.name %></td>
+													<td><%= link_to "보기", post_path(post, @team) %></td>
+												</tr>
+											<% end %>
+										</tbody>
+									</table>
+									<br>
+
+								</div>
+
+								<div class="col-md-1">
+
+								</div>
+
+								<div class="col-md-5" style="height:267px; background:#fff; padding-left:30px; border-radius: 10px;">
+									<br>
+									<h3><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;조별활동과정</h3>
+									<br>
+									<table class="col-md-12">
+										<thead>
+											<tr>
+												<th>제목</th>
+												<th>작성자</th>
+												<th colspan="3"></th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<% @activity.each do |activity| %>
+												<tr>
+													<td><%= activity.title %></td>
+													<td><%= activity.user.name %></td>
+													<td><%= link_to "보기", activity_path(activity, @team) %></td>
+												</tr>
+											<% end %>
+										</tbody>
+									</table>
+									<br>
+								</div>
 							</div>
 
 						</div>
+					</div>
+				</div>
+			</div>
+	
+	
+		
+		<% else %>
+			<!-- admin가 uht에도 있을 때   -->
+			<% if Uht.where(user_id: current_user.id, team_id: @team.id).exists? %>
+				<div id="wrap">
+					<div id="wrap_team">
+						<header id="header">
+							<div class="logo">
+								<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
+							</div>
+							<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+								<div class="user">
+									<p style="margin-top:15px; font-size:17px;">
+										<%= current_user.name %>
+									</p>
+								</div>
+							</a>
+						</header>
+					</div>
 
-						<% else %> 
-							가입하시겠습니까?
-							<%= button_to "가입하기", uhts_path(uht: {user_id: current_user.id, team_id: @team}) %>
-						<% end %>
-					<% end %>
-				<% else %>
-					로그인 페이지
-				<% end %>
+
+					<div class="back">
+						<div id="wrap_team" style="margin-top:2%;">
+							<div class="category">
+								<div class="team_main">
+										<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:id] %>"><%= Team.find(params[:id]).t_name %></a>
+								</div>
+								<nav class="nav">
+									<ul>
+										<li><%= link_to "게시판", post_list_path(params[:id]) %></li>
+										<li><%= link_to "조별활동과정", activity_list_path(params[:id])%></li>
+										<li><%= link_to "일정관리", write_meeting_path(params[:id])%></li>
+										<% @admin.each do |admin| %>
+											<% if admin.user_id == current_user.id %>
+												<li><%= link_to "멤버관리", members_path(params[:id]) %></li>
+												<li><%= link_to "팀관리", edit_team_path(params[:id]) %></li>
+											<% end %>
+										<% end %>
+
+									</ul>
+								</nav>
+								<div style="height:10%; float:right;">
+									<hr>
+									<nav class="nav">
+										<ul style="margin-left:-10px; font-size:15px;"><%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></ul>
+									</nav>
+								</div>
+							</div>
+
+							<div class="contents" style="width:70%; background:#F2F2F2; text-align:left;">
+
+								<div class="row">
+									<div class="col-md-6" style="height:221px; background:#fff; padding-left:30px; border-radius: 10px;">
+										<br>
+										<h3><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;우리팀</h3><br>
+										<h4>
+											팀명
+											<small class="text-muted"><%= @team.t_name %></small>
+										</h4>
+										<h4>
+											과목명
+											<small class="text-muted"><%= @team.c_name %></small>
+										</h4>
+										<h4>
+											교수명
+											<small class="text-muted"><%= @team.p_name %></small>
+										</h4><br>
+									</div>
+
+									<div class="col-md-1" >
+									</div>
+
+									<div class="col-md-5" style="height:221px; background:#fff; padding-left:30px; border-radius: 10px;">
+										<br>
+										<h3><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;참여자</h3><br>
+										<% if Uht.where(user_id: @admin, team_id: params[:id]).exists? %>
+											<% @member.each do |member| %>
+												<%= User.find(member.user_id).number %>&nbsp;&nbsp;
+												<%= User.find(member.user_id).name %><br>
+											<% end %>
+										<% else %>
+											<% @admin.each do |admin| %>
+												<%= User.find(admin.user_id).number %>&nbsp;&nbsp;
+												<%= User.find(admin.user_id).name %><br>
+											<% end %>
+											<% @member.each do |member| %>
+												<%= User.find(member.user_id).number %>&nbsp;&nbsp;
+												<%= User.find(member.user_id).name %><br>
+											<% end %>
+										<% end %>
+									</div>
+								</div><br>
+
+								<div class="row" style="height:271px; background:#fff; padding-left:30px; border-radius: 10px;">
+									<div class="col-md-12" ><br>
+										<H3><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;&nbsp;오늘은 <%= @t.to_date %></H3>
+										<br>
+										<div class="card border-dark mb-3" style="max-width: 20rem;">
+											<div class="card-header" style="width:100%;">
+												<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">모임 일정</a>
+											</div>
+											<div class="card-body">
+												<% @lately_meeting.each do |meeting| %>
+												<h4 class="card-title">
+													<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings"><%= meeting.schedule %></a>
+												</h4>
+												<p class="card-text">
+													<a href="http://jo-byeol-mbjdm.run.goorm.io/<%= params[:id] %>/meetings">
+														<%= meeting.start_time.to_date %><br>
+														<%= meeting.start_time.strftime("%k:%M %p")%><br>
+														<%= meeting.place %><br>
+													</a>
+												</p>
+												<% end %>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
+
+								<div class="row">
+									<div class="col-md-6" style="height:267px; background:#fff; padding-left:30px; border-radius: 10px;">
+										<br>
+										<h3><i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;&nbsp;게시판</h3>
+										<br>
+										<table class="col-md-12">
+											<thead>
+												<tr>
+													<th>제목</th>
+													<th>작성자</th>
+													<th colspan="3"></th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<% @post.each do |post| %>
+													<tr>
+														<td><%= post.title %></td>
+														<td><%= post.user.name %></td>
+														<td><%= link_to "보기", post_path(post, @team) %></td>
+													</tr>
+												<% end %>
+											</tbody>
+										</table>
+										<br>
+
+									</div>
+
+									<div class="col-md-1">
+
+									</div>
+
+									<div class="col-md-5" style="height:267px; background:#fff; padding-left:30px; border-radius: 10px;">
+										<br>
+										<h3><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;조별활동과정</h3>
+										<br>
+										<table class="col-md-12">
+											<thead>
+												<tr>
+													<th>제목</th>
+													<th>작성자</th>
+													<th colspan="3"></th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<% @activity.each do |activity| %>
+													<tr>
+														<td><%= activity.title %></td>
+														<td><%= activity.user.name %></td>
+														<td><%= link_to "보기", activity_path(activity, @team) %></td>
+													</tr>
+												<% end %>
+											</tbody>
+										</table>
+										<br>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+	
+	
+	
+			<!-- 팀에 가입하기   -->
+			<% else %> 
+				<div id="wrap">
+					<div id="wrap_team">
+						<header id="header">
+							<div class="logo">
+								<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
+							</div>
+							<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+								<div class="user">
+									<p style="margin-top:15px; font-size:17px;">
+										<%= current_user.name %>
+									</p>
+								</div>
+							</a>
+						</header>
+					</div>
 
 
+					<div class="back">
+						<div id="wrap_team" style="margin-top:2%;">
+			
+	
+							
+							<div id="with">
+								<h2 style="text-align:center;">
+									참여하시겠습니까?
+								</h2>
+								<br>
+								<div class="row">
+									<div class="col-md-6" style="background:#fff; padding-left:30px; border-radius: 10px;">
+										<br>
+										<h3><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;팀정보</h3><br>
+										<h4>
+											팀명
+											<small class="text-muted"><%= @team.t_name %></small>
+										</h4>
+										<h4>
+											과목명
+											<small class="text-muted"><%= @team.c_name %></small>
+										</h4>
+										<h4>
+											교수명
+											<small class="text-muted"><%= @team.p_name %></small>
+										</h4>
+										<br>
+									</div>
+
+								</div>
+								<br>
+								<br>
+
+								<div class="actions d-grid gap-2">
+									<%= button_to "가입하기", uhts_path(uht: {user_id: current_user.id, team_id: @team}) %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+							
+			<% end %>
+		<% end %>
+	
+	<!-- 로그인 안했을 때  -->
+	<% else %>		
+		<div id="wrap">
+			<div id="wrap_team">
+				<header id="header">
+					<div class="logo">
+						<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
+					</div>
+				</header>
 			</div>
 
 
+			<div class="back">
+				<div id="wrap_team" style="margin-top:2%;">
+			
+	
+							
+					<div id="with">
+						<h2 style="text-align:center;">
+							참여하시겠습니까?
+						</h2>
+						<br>
+						<div class="row">
+							<div class="col-md-6" style="background:#fff; padding-left:30px; border-radius: 10px;">
+								<br>
+								<h3><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;팀정보</h3><br>
+								<h4>
+									팀명
+									<small class="text-muted"><%= @team.t_name %></small>
+								</h4>
+								<h4>
+									과목명
+									<small class="text-muted"><%= @team.c_name %></small>
+								</h4>
+								<h4>
+									교수명
+									<small class="text-muted"><%= @team.p_name %></small>
+								</h4>
+								<br>
+							</div>
+
+						</div>
+						<br>
+						<br>
+
+						<div class="actions d-grid gap-2">
+							<%= button_to "가입하기", new_user_session_path %>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</body>
+	<% end %>
+	

@@ -1,28 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Teams</h1>
+<h1>teams</h1>
 
 <table>
   <thead>
     <tr>
-		<th>ID</th>
-      <th>T name</th>
-      <th>C name</th>
-      <th>P name</th>
+      <th>t_name</th>
+      <th>c_name</th>
+		<th>p_name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @teams.each do |team| %>
+    <% @teams.each do |teams| %>
       <tr>
-		<td><%= team.id %></td>
-        <td><%= team.t_name %></td>
-        <td><%= team.c_name %></td>
-        <td><%= team.p_name %></td>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= teams.t_name %></td>
+        <td><%= teams.c_name %></td>
+		 <td><%= teams.p_name %></td>
+        <td><%= link_to 'Show', teams %></td>
+        <td><%= link_to 'Edit', edit_admin_path(teams) %></td>
+        <td><%= link_to 'Destroy', teams, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Team', new_team_path %>
+<%= link_to 'New team', new_team_path %>

@@ -11,7 +11,10 @@ class TeamsController < ApplicationController
 	@t = Time.now
 	@meeting = Meeting.where(team_id: params[:id])
 	@lately_meeting = Meeting.where(start_time: @meeting.maximum("start_time"))
-	@admin = Admin.where(team_id: params[:id])
+	@admin = Admin.where(team_id: @team)
+	@member = Uht.where(team_id: @team)
+	@post = Post.where(team_id: params[:id]).last(5)
+	@activity = Activity.where(team_id: params[:id]).last(5)
   end
 
   # GET /teams/new

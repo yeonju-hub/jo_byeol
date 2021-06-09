@@ -11,15 +11,15 @@ color:#fff;
 }
 
 #header .logo {
-	width:160px;
+	width:80px;
 	height:80px;
-	overflow:hidden;
 	float:left;
 }
 
 
 #header .logo img{
-	margin-top:-25px;
+	width:80px;
+	height:80px;
 	float:left;
 }
 
@@ -33,6 +33,7 @@ color:#fff;
 	margin-top:0.7%;
 }
 
+
 .back {
 	min-height: 100%;
   	min-width: 100%;
@@ -43,7 +44,7 @@ color:#fff;
     
   /* Set up positioning */
   	position: fixed;
-	background:#F9FAFA;
+	background:#F2F2F2;
 }
 
 .log_in {
@@ -59,6 +60,20 @@ color:#fff;
 	width:200px;
 	float:none; 
 	margin:0 auto;
+}
+
+.log_in .password_notice {
+	width:250px;
+	height:55px;
+	background:#F9FAFA;
+	float:left;
+	border-radius: 10px;
+	font-size:13px;
+	color:#FF5457;
+}
+
+.log_in .password_notice p {
+	padding-top:11px;	
 }
 
 .sign_up {

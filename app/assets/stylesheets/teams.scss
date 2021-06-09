@@ -12,12 +12,26 @@
 	width:80%;
 }
 
+.user {
+	width:5%;
+	height:60%;
+	float:right;
+	background:#F2F2F2;
+	text-align:center;
+	border-radius: 30px;
+	margin-top:15px;
+}
+
 .category {
     width: 230px;
     height: 83vh;
     float: left;
 	border-radius: 20px;
 	background:#fff;
+}
+
+.category .team_main {
+	height:10%;
 }
 
 .category .team_main a {
@@ -31,12 +45,13 @@
 
 .category .nav{
 	width: 230px; 
+	height:80%;
 }
 
 
 .category .nav li {
 	width: 230px; 
-	margin-left:-33px;
+	margin-left:-35px;
 }
 
 
@@ -45,6 +60,7 @@
 	padding: 20px; 
 	display: block; 
 	font-size:15px;
+	margin-left:1px;
 }
 
 
@@ -60,12 +76,13 @@
 .contents {
 	width: 75%;
     height: 83vh;
-	padding: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 	margin-left:50px;
     float: left;
 	text-align: center; 
 	background:#fff;
-	
+
 }
 .contents a {
 	width:300px;
@@ -73,13 +90,6 @@
 }
 
 
-.contents .box {
-	width:300px;
-	height:200px;
-	font-size: 20px;
-	background: #cda;
-	border: 1px solid #E6E6E6;
-}
 
 .contents .calender {
 	width:80%;
@@ -88,12 +98,9 @@
 
 
 .team_edit {
-	width:300px;
-	height:450px;
+	width:400px;
 	float:none; 
 	margin:0 auto;
-	border-radius: 20px;
-	background:#fff;
 }
 
 .team_edit .box{
@@ -104,11 +111,13 @@
 
 .team_new {
 	width:300px;
-	height:450px;
+	height:470px;
 	float:none; 
 	margin:0 auto;
 	border-radius: 20px;
 	background:#fff;
+	
+	margin-top:100px;
 }
 
 .team_new .box{
@@ -123,4 +132,8 @@
 	float:none; 
 	margin:0 auto;
 	margin-top:10%;
+}
+
+#with {
+	width:80%;
 }

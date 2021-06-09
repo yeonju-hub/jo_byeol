@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @team = params[:team_id]
-	@pagy, @posts = pagy(Post.where(team_id: @team).all, items: 10)
+	@pagy, @posts = pagy(Post.where(team_id: @team).all, items: 4)
 	@admin = Admin.where(team_id: @team)  
 	@post = Post.where(team_id: params[:team_id])
   end
@@ -20,11 +20,14 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-	  @team = params[:team_id]
+	@team = params[:team_id]
+	@admin = Admin.where(team_id: @team)
   end
 
   # GET /posts/1/edit
   def edit
+	@team = params[:team_id]
+	@admin = Admin.where(team_id: @team)
   end
 
   # POST /posts or /posts.json

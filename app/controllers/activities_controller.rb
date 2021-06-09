@@ -24,6 +24,9 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
+	@team = params[:team_id]
+	@activities = Activity.where(team_id: @team)
+	@admin = Admin.where(team_id: @team)
   end
 
   # POST /activities or /activities.json

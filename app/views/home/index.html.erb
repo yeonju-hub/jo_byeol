@@ -11,24 +11,29 @@
 		<% if user_signed_in? %>
 			<div class="top_menu">	
 				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
 		 		</div>
 				<div class="link_login">
-					<%= current_user.email %>. |
-					user ID : <%= current_user.id %>
-					<%= link_to "회원정보 수정", edit_user_registration_path, :class => 'navbar-link' %>&nbsp; | &nbsp;
+					<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+						<div class="user">
+							<p style="margin-top:15px; font-size:17px;">
+								<%= current_user.name %>
+							</p>
+						</div>
+					</a>
 					<%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
 				</div>
 			</div>		
 		<% else %>
 			<div class="top_menu">
 				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
 		 		</div>
 				<div class="link">
-					<%= link_to "로그인", new_user_session_path, :class => 'navbar-link' %>&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="btn btn-default" type="button" style="width:100px; background:#B890D3;">
-						<%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link' , style: "text-decoration: none; color:#1C1C1C;" %></button>
+					<%= link_to "로그인", new_user_session_path, :class => 'navbar-link', style: "float:left;" %>&nbsp;&nbsp;&nbsp;&nbsp;
+					<%= button_to "회원가입", new_user_registration_path, :class => "btn btn-default", :method => :get,  
+					style: "width:100px; background:#B890D3;text-decoration: none; color:#1C1C1C; float:right; margin-top:-30px;" %>
+					
 				</div>
 			</div>
 		<% end %>
@@ -142,46 +147,63 @@
 		
 				<div class="banner_bono center-block">
 					<div class="bono_img">
-						<img src="<%= asset_path 'bono1.jpg' %>" >
+						<img src="<%= asset_path 'banner_img.png' %>" >
 					</div>
 					
 					<strong>올인원 워크스페이스</strong>
 					<p>조별 미치겠어 하나만 있으면 작성, 계획, 협업을 모두 할 수 있습니다.</p>
-					<button class="btn btn-default" type="button" style="width:120px; background:#B890D3; margin-top:20px;">
-						<%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link', style: "text-decoration: none; color:#1C1C1C;" %></button>
+					<br>
+					<%= button_to "회원가입", new_user_registration_path, :class => "btn btn-default", :method => :get,  
+					style: "width:100px; background:#B890D3;text-decoration: none; color:#1C1C1C;" %>
 					<br>
 				</div>
-					
+					<br><br><br>
 			
 				<div class="img1 center-block">
 					<img src="<%= asset_path 'img1.png' %>" >
 						
-					<div class="dora">
-						<img src="<%= asset_path 'dora.jpg' %>" >
+					<div class="yeon">
+						<img src="<%= asset_path 'yeon.png' %>" >
 					</div>
 				</div>
-					
+					<br>
 				<div class="img1_box center-block">
-							
+					<img src="<%= asset_path 'team_main.PNG' %>" >		
 				</div>
 					
 			
 					
-			
+				<br><br>
 				<div class="img2 center-block">
 					<img src="<%= asset_path 'img2.png' %>" >
 						
-					<div class="keroro">
-						<img src="<%= asset_path 'keroro1.jpg' %>" >
+					<div class="hyo">
+						<img src="<%= asset_path 'hyo.png' %>" >
 					</div>
 						
 				</div>
-					
+				<br>	
 				<div class="img2_box center-block">
-							
+					<img src="<%= asset_path 'post.png' %>" >
 				</div>
+			
+			
+			
+				<br><br>
+				<div class="img3 center-block">
+					<img src="<%= asset_path 'img3.png' %>" >
+						
+					<div class="sook">
+						<img src="<%= asset_path 'sook.png' %>" >
+					</div>
+						
+				</div>
+				<br>
+				<div class="img3_box center-block">
+					<img src="<%= asset_path 'calendar.png' %>" >		
+				</div>
+			
 					
-					<img src="<%= asset_path 'sic2.jpg' %>" >
 					
 				
 	</div>		

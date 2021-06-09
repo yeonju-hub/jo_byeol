@@ -1,37 +1,26 @@
+<div class="activity_new center-block">
 <%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="field">
-    <%= form.label :team_id %>
-    <%= form.text_field :team_id, value: params[:team_id] %>
+    <%= form.hidden_field :team_id, value: params[:team_id] %>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
+  <div class="field d-grid gap-2">
+    제목<br>
     <%= form.text_field :title %>
   </div>
-
-  <div class="field">
-    <%= form.label :contents %>
+<br>
+  <div class="field d-grid gap-2">
+    내용<br>
     <%= form.text_area :contents %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<br>
+  <div class="actions d-grid gap-2">
+		<button class="btn btn-lg btn-default" type="submit" style="background:#1C1C1C; color:#F9FAFA;">확인</button>
+	</div>
 <% end %>
+</div>

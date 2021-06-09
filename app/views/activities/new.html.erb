@@ -9,29 +9,43 @@
 		<div id="wrap_team">
 			<header id="header">
 				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
 				</div>
+				<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+					<div class="user">
+						<p style="margin-top:15px; font-size:17px;">
+							<%= current_user.name %>
+						</p>
+					</div>
+				</a>
 			</header>
 		</div>
 		<div class="back">
 			<div id="wrap_team" style="margin-top:2%;">
 				<div class="category">
 					<div class="team_main">
-						<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>"><%= Team.find(params[:team_id]).t_name %></a>
+						<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= @team %>"><%= Team.find(@team).t_name %></a>
 					</div>
 					<nav class="nav">
 						<ul>
-							<li><%= link_to "게시판", post_list_path(params[:team_id]) %></li>
-							<li><%= link_to "조별활동과정", activity_list_path(params[:team_id]), method: :post %></li>
-							<li><%= link_to "일정관리", write_meeting_path(params[:team_id]), method: :post %></li>
+							<li><%= link_to "게시판", post_list_path(@team) %></li>
+							<li><%= link_to "조별활동과정", activity_list_path(@team)%></li>
+							<li><%= link_to "일정관리", write_meeting_path(@team)%></li>
 								<% @admin.each do |admin| %>
 									<% if admin.user_id == current_user.id %>
-										<li><%= link_to "멤버관리", members_path(params[:team_id]), method: :post %></li>
-										<li><%= link_to "팀관리", edit_team_path(params[:team_id]) %></li>
+										<li><%= link_to "멤버관리", members_path(@team) %></li>
+										<li><%= link_to "팀관리", edit_team_path(@team) %></li>
 									<% end %>
 								<% end %>
+
 						</ul>
 					</nav>
+					<div style="height:10%; float:right;">
+						<hr>
+						<nav class="nav">
+							<ul style="margin-left:-10px; font-size:15px;"><%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></ul>
+						</nav>
+					</div>
 				</div>
 				
 				<div class="ac_contents">

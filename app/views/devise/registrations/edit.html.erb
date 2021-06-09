@@ -1,11 +1,18 @@
 <div id="wrap">
 	<header id="header">
 		<div class="logo">
-			<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+			<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
 		</div>
 		<div class="strong">
 			<strong>프로필 수정</strong>
 		</div>
+		<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+					<div class="user" style="width:3%;">
+						<p style="margin-top:15px; font-size:17px;">
+							<%= current_user.name %>
+						</p>
+					</div>
+				</a>
 	</header>
 	
 	<div class="back">

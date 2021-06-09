@@ -9,9 +9,17 @@
 		<div id="wrap_team">
 			<header id="header">
 				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
 				</div>
+				<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+					<div class="user">
+						<p style="margin-top:15px; font-size:17px;">
+							<%= current_user.name %>
+						</p>
+					</div>
+				</a>
 			</header>
+			
 		</div>
 		<div class="back">
 			<div id="wrap_team" style="margin-top:2%;">
@@ -32,42 +40,51 @@
 								<% end %>
 						</ul>
 					</nav>
+					<div style="height:10%; float:right;">
+						<hr>
+						<nav class="nav">
+							<ul style="margin-left:-10px; font-size:15px;"><%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></ul>
+						</nav>
+					</div>
 				</div>
 				
 				<div class="post_contents">
 					<div class="post">
+								<div class="card bg-light mb-3" style="width: 90%;">
+									<div class="card-header" style="width:100%;">
+									  <h3>
+										  <%= @activity.title %>
+									  </h3>
+									</div>
+									  <div class="card-body" style="width:100%;">
+										<p class="card-text" style="float:right">
+											<%= @activity.user.name %>&nbsp;&nbsp;&nbsp;
+											<%= @activity.created_at.strftime("%F %H:%M") %>
+										</p>
+										<h5 class="card-title">
+										<h5><strong>자료조사</strong></h5><br>
+										<%= @activity.research %><br><hr>
+
+										<h5><strong>PPT</strong></h5><br>
+										<%= @activity.ppt %><br><hr>
+
+										<h5><strong>대본</strong></h5><br>
+											<%= @activity.script %><br><hr>
+											<%= link_to "첨부자료 다운로드", @activity.attachment_url, download: "Activity_#{@activity.id}_attachment" %><br>
+										 </h5>
+									</div>
+								</div>
+							
+
+
+								<div class="edit_delete">
+									<% if @activity.user_id == current_user.id %>
+											<%= link_to '수정', edit_activity__path(@team, @activity) %>
+											<%= link_to '삭제', @activity, method: :delete, data: { confirm: '정말 삭제하시겠습니까??' } %>
+									<% end %>
+								</div>
 						
-						<br>
-						<div class="card bg-light mb-3" style="width: 90%;">
-							<div class="card-header" style="width:100%;">
-							  <h3>
-								  <%= @activity.title %>
-							  </h3>
-							</div>
-						  <div class="card-body" style="width:100%;">
-							<p class="card-text" style="float:right"><%= @activity.user.name %></p><br>
-							<h5 class="card-title">
-								<h5><strong>자료조사</strong></h5><br>
-								<%= @activity.research %><br><hr>
-								
-								<h5><strong>PPT</strong></h5><br>
-							 	<%= @activity.ppt %><br><hr>
-								
-								<h5><strong>대본</strong></h5><br>
-								<%= @activity.script %><br><hr>
-								<%= link_to "첨부자료 다운로드", @activity.attachment_url, download: "Activity_#{@activity.id}_attachment" %><br>
-							 </h5>
-						  </div>
-						</div>
 						
-						
-						
-						<% if @activity.user_id == current_user.id %>
-							<div class="edit_delete">
-								<%= link_to '수정', edit_activity_path(@activity) %>
-								<%= link_to '삭제', @activity, method: :delete, data: { confirm: '정말 삭제하시겠습니까??' } %>
-							</div>
-						<% end %>
 						
 						
 						
@@ -80,47 +97,3 @@
 </html>
 	
 	
-
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Team:</strong>
-  <%= @activity.team %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @activity.user %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @activity.title %>
-</p>
-
-<p>
-  <strong>Research:</strong>
-  <%= @activity.research %>
-</p>
-
-<p>
-  <strong>Ppt:</strong>
-  <%= @activity.ppt %>
-</p>
-
-<p>
-  <strong>Script:</strong>
-  <%= @activity.script %>
-</p>
-
-<p>
-  <strong>Attachment:</strong>
-  <%= @activity.attachment %>
-</p>
-
- <%= link_to "Download file", @activity.attachment_url, download: "Activity_#{@activity.id}_attachment" %>
- <% if @activity.user_id == current_user.id %>
-							<td><%= link_to '수정', edit_activity_path(@activity) %></td>
-							<td><%= link_to '삭제하기', @activity, method: :delete, data: { confirm: '정말 삭제하시겠습니까??' } %></td>
-						  <% end %>

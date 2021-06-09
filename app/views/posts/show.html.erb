@@ -9,8 +9,15 @@
 		<div id="wrap_team">
 			<header id="header">
 				<div class="logo">
-					<a href="<%= root_path %>"><img src="<%= asset_path 'logo.png' %>" ></a>
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
 				</div>
+				<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+					<div class="user">
+						<p style="margin-top:15px; font-size:17px;">
+							<%= current_user.name %>
+						</p>
+					</div>
+				</a>
 			</header>
 		</div>
 		<div class="back">
@@ -32,6 +39,12 @@
 								<% end %>
 						</ul>
 					</nav>
+					<div style="height:10%; float:right;">
+						<hr>
+						<nav class="nav">
+							<ul style="margin-left:-10px; font-size:15px;"><%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></ul>
+						</nav>
+					</div>
 				</div>
 				
 				<div class="post_contents">
@@ -45,23 +58,42 @@
 							  </h3>
 							</div>
 						  <div class="card-body" style="width:100%;">
-							<p class="card-text" style="float:right"><%= @post.user.name %></p><br><br>
+							<p class="card-text" style="float:right">
+								<%= @post.user.name %>&nbsp;&nbsp;&nbsp;
+								<%= @post.created_at.strftime("%F %H:%M") %>
+							</p>
+							<br><br>
 							<h5 class="card-title"><%= @post.contents %></h5><br><br><br><br>
 							<div style="text-align:center;">
-							  <%= link_to "좋아요 #{@post.get_upvotes.size}", like_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px; background:#fff;" %>
-							  <%= link_to "싫어요 #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px;background:#fff;" %>
+							  <%= link_to "좋아요 #{@post.get_upvotes.size}", like_post_path(@post), method: :put, 
+								style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px; background:#fff;" %>
+							  <%= link_to "싫어요 #{@post.get_downvotes.size}", dislike_post_path(@post), method: :put, 
+								style: "margin-top: 10px; padding: 10px; border: 1px solid black; border-radius: 10px;background:#fff;" %>
 							</div>
 						  </div>
 						</div>
 						
+						
+						<div class="edit_delete">
+							<% if @post.user_id == current_user.id %>
+								<%= link_to '수정', edit_post__path(@team, @post) %>
+								<%= link_to '삭제', @post, method: :delete, data: { confirm: '정말 삭제하시겠습니까??' } %>
+							<% end %>
+						</div>
 						
 						
 						<div class="comments_contents">
 							<div class="comments">
 								
 								<% @comments.each do |comments| %>
-									<p><%= User.find(comments.user_id).name %></p>
-									<%= comments.comment %><hr>
+									<p style="font-size:15px; float:left;"><%= User.find(comments.user_id).name %>&nbsp;&nbsp;&nbsp;</p>
+									<p><%= comments.created_at.strftime("%F %H:%M") %></p>
+									<%= comments.comment %>
+									
+									<% if comments.user_id == current_user.id %>
+										<p style="float:right;"><%= link_to '삭제', comments, method: :delete, data: { confirm: '정말 삭제하시겠습니까??' } %></p>
+									<% end %>
+									<hr>
 								<% end %>
 								<%= render 'comments/form', comment: @comment %>
 							</div>

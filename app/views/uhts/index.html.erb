@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="ko">
 <head>
 	
@@ -6,60 +6,106 @@
 
 <body>
 	<div id="wrap">
-	
-		<div class="category">
-			<div class="team_main">
-				<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>"><%= Team.find(params[:team_id]).t_name %></a>
+		<div id="wrap_team">
+			<header id="header">
+				<div class="logo">
+					<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
+				</div>
+				<a href="https://jo-byeol-mbjdm.run.goorm.io/users/edit">
+					<div class="user">
+						<p style="margin-top:15px; font-size:17px;">
+							<%= current_user.name %>
+						</p>
+					</div>
+				</a>
+			</header>
+		</div>
+		<div class="back">
+			<div id="wrap_team" style="margin-top:2%;">
+				<div class="category">
+					<div class="team_main">
+						<a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= @team %>"><%= Team.find(@team).t_name %></a>
+					</div>
+					<nav class="nav">
+						<ul>
+							<li><%= link_to "게시판", post_list_path(@team) %></li>
+							<li><%= link_to "조별활동과정", activity_list_path(@team)%></li>
+							<li><%= link_to "일정관리", write_meeting_path(@team)%></li>
+								<% @admin.each do |admin| %>
+									<% if admin.user_id == current_user.id %>
+										<li><%= link_to "멤버관리", members_path(@team) %></li>
+										<li><%= link_to "팀관리", edit_team_path(@team) %></li>
+									<% end %>
+								<% end %>
+
+						</ul>
+					</nav>
+					<div style="height:10%; float:right;">
+						<hr>
+						<nav class="nav">
+							<ul style="margin-left:-10px; font-size:15px;"><%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></ul>
+						</nav>
+					</div>
+				</div>
+				
+				<div class="contents">
+					<br>
+					<h3 style="float:left;">멤버관리</h3>
+					<br><br><br>
+						<p style="font-size:23px;">
+							공유링크
+						</p>
+						<p style="width:500px;height:55px; background:#E6E6E6; font-size:20px; border-radius: 8px;"><br>
+							http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>
+						</p>
+						<p>
+							참여자에게 링크를 알려주세요<br>
+							위 링크로 입장하는 사용자는 참여자 권한을 얻습니다.
+						</p>
+						<br><br>
+						<div class="row">
+							<div class="col-md-12" >
+									<table class="table table-hover">
+									  <thead>
+										<tr>
+											<th>이름</th>
+											<th>학번</th>
+											<th>이메일</th>
+											<th colspan="1"></th>
+										</tr>
+									  </thead>
+
+										<tbody>
+											<% @uht.each do |uht| %>
+												<tr>
+													<td><%= User.find(uht.user_id).name %></td>
+													<td><%= User.find(uht.user_id).number %></td>
+													<td><%= User.find(uht.user_id).email %></td>
+													<td>
+														<% if uht.user_id != current_user.id %>
+															<%= link_to '강퇴하기', uht, method: :delete, data: { confirm: '정말 강퇴 시키겠습니까?' } %>
+														<% end %>
+													</td>
+												</tr>
+											<% end %>
+										</tbody>
+									</table>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<nav class="nav">
-				<ul>
-					<li><a href="#">공지사항</a></li>
-					<li><%= link_to "조별활동과정", activity_list_path(params[:team_id]), method: :post %></li>
-					<li><%= link_to "일정관리", write_meeting_path(params[:team_id]), method: :post %></li>
-						<% @admin.each do |admin| %>
-							<% if admin.user_id == current_user.id %>
-								<li><%= link_to "멤버관리", members_path(params[:team_id]), method: :post %></li>
-								<li><%= link_to "팀관리", edit_team_path(params[:team_id]) %></li>
-							<% end %>
-						<% end %>
-				</ul>
-			</nav>
-		</div>
-		
-		
-		<div class="member_setting">
-			
-		공유링크 <a href="http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %>">http://jo-byeol-mbjdm.run.goorm.io/teams/<%= params[:team_id] %></a><br><br>
-		
-		
-			
-		
-			<h2>멤버관리</h2>
-
-
-			<table class="member_table">
-			  <thead>
-				<tr>
-					<th>이름</th>
-					<th>학번</th>
-					<th>이메일</th>
-					<th colspan="1"></th>
-				</tr>
-			  </thead>
-
-			<tbody>
-			<% @uht.each do |uht| %>
-				<tr>
-					<td><%= User.find(uht.user_id).name %></td>
-					<td><%= User.find(uht.user_id).number %></td>
-					<td><%= User.find(uht.user_id).email %></td>
-					<% if uht.user_id != current_user.id %>
-					<td><%= link_to '강퇴하기', uht, method: :delete, data: { confirm: '정말 강퇴 시키겠습니까?' } %></td>
-					<% end %>
-				</tr>
-			<% end %>
-			</tbody>
-			</table>
-		</div>
 	</div>
 </body>
+</html>
+	
+	
+	
+
+
+
+
+
+
+
+

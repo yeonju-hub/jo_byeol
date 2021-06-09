@@ -36,4 +36,10 @@ Rails.application.routes.draw do
 	
 	post '/:team_id/posts' => 'posts#new', as: 'write_post'
 	get '/:team_id/posts' => 'posts#new', as: 'get_write_post'
+	
+	post '/:team_id/activities/:id' => 'activities#edit', as: 'edit_activity_'
+	get '/:team_id/activities/:id' => 'activities#edit', as: 'get_edit_activity'
+	
+	post '/:team_id/posts/:id' => 'posts#edit', as: 'edit_post_'
+	get '/:team_id/posts/:id' => 'posts#edit', as: 'get_edit_post'
 end

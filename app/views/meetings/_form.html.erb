@@ -1,36 +1,31 @@
-<%= form_with(model: meeting, local: true) do |form| %>
-  <% if meeting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
 
-      <ul>
-      <% meeting.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<div class="row">
 
-  <div class="field">
-    <%= form.hidden_field :team_id, value: params[:team_id] %>
-  </div>
+		<%= form_with(model: meeting, local: true) do |form| %>
 
-  <div class="field">
-    일정
-    <%= form.text_field :schedule %>
-  </div>
 
-  <div class="field">
-    날짜
-    <%= form.datetime_select :start_time %>
-  </div>
+	  	<div class="col-md-6" >
+			<%= form.hidden_field :team_id, value: params[:team_id] %>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6" style="float:left;">
+			일정
+			<%= form.text_field :schedule %>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			장소
+			<%= form.text_field :place %><br><br>
+			날짜
+			<%= form.datetime_select :start_time %>&nbsp;&nbsp;&nbsp; 
+			<div class="actions" style="float:right;">
+				<button class="btn btn-outline-primary" type="submit" style="color:#2b2b2b">일정등록</button>
+			</div>
+		</div>
+		<div class="col-md-6">
+			
+		</div>
+		<% end %>
+		
 
-  <div class="field">
-    장소
-    <%= form.text_field :place %>
-  </div>
-
-  <div class="actions">
-    <input type="submit" value="확인" />
-  </div>
-<% end %>
+	</div>

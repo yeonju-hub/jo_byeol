@@ -1,16 +1,49 @@
-<h2>Forgot your password?</h2>
+<div id="wrap">
+	
+	<header id="header">
+		<div class="logo">
+			<a href="<%= root_path %>"><img src="<%= asset_path 'logo1.jpg' %>" ></a>
+		</div>
+		<div class="strong">
+			<strong>비밀번호 변경</strong>
+		</div>
+		
+	</header>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+	<div class="back">
+		<br><br><br><br><br><br>
+		<div class="log_in center-block">
+			<br>
+			
+			<div class="box center-block" style="width:250px;">
+				<h2 style="text-align:center;">비밀번호 변경</h2><br />
+				
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+				  <%= render "devise/shared/error_messages", resource: resource %>
+					<br>
+				  <div class="field d-grid gap-2">
+					이메일<br />
+					<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+				  </div>
+				
+				<div class="password_notice">	
+						<p>&nbsp;&nbsp;&nbsp;※ 비밀번호 변경을 위해 메일을 <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전송합니다.</p>
+				</div>
+				<br><br><br><br>
+				  <div class="d-grid gap-2">
+				 <button class="btn btn-lg btn-default" type="submit" style="background:#1C1C1C; color:#F9FAFA;">비밀번호 변경</button>
+				</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+				<% end %>
 
-<%= render "devise/shared/links" %>
+				<br><br>
+				<%= render "devise/shared/links" %>
+
+			</div>
+			
+			<br><br><br>
+		</div>
+	</div>
+</div>
